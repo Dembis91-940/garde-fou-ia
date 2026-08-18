@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garde-fou IA — Déployez vos agents IA avec les mêmes réflexes que vos serveurs</title>
+<meta name="description" content="Pack de sécurité pour agents IA : formation PDF sur les 7 réflexes de sécurité, 10 templates prêts à l'emploi, procédure d'incident et sensibilisation équipe. 29 €, 59 €, 119 €.">
+<meta name="theme-color" content="#1e293b">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Garde-fou IA">
+<meta property="og:title" content="Garde-fou IA — Votre agent IA travaille seul. Qui le surveille ?">
+<meta property="og:description" content="Fuites de données, erreurs silencieuses, usage incontrôlé : déployez vos agents IA avec les mêmes réflexes que vos serveurs. Formation + 10 templates, dès 29 €.">
+<meta property="og:url" content="https://dembis91-940.github.io/garde-fou-ia/">
+<meta property="og:image" content="https://dembis91-940.github.io/garde-fou-ia/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e293b'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='none' stroke='%23ef4444' stroke-width='4'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='%23ef4444' opacity='0.15'/%3E%3Ctext x='32' y='43' font-family='Arial Black' font-size='20' font-weight='900' fill='%23ffffff' text-anchor='middle'%3E!%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Garde-fou IA — Pack de sécurité pour agents IA",
+  "description": "Formation PDF sur les 7 réflexes de sécurité des agents IA, 10 templates prêts à l'emploi, procédure d'incident et kit de sensibilisation équipe.",
+  "brand": { "@type": "Brand", "name": "Garde-fou IA" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "37" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "29",
+    "highPrice": "119",
+    "offerCount": "3",
+    "offers": [
+      { "@type": "Offer", "name": "Formation seule", "price": "29", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "Formation + 10 templates", "price": "59", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "Pack entreprise", "price": "119", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Qu'est-ce que le pack Garde-fou IA ?", "acceptedAnswer": { "@type": "Answer", "text": "Un pack de sécurité pour agents IA : une formation PDF sur les 7 réflexes de sécurité (moindre privilège, données interdites, validation humaine, journalisation, limites de coûts, sortie d'incident, revue mensuelle) et des templates prêts à l'emploi, avec une version entreprise incluant procédure d'incident détaillée et sensibilisation équipe." } },
+    { "@type": "Question", "name": "Faut-il être développeur pour utiliser le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Aucun prérequis technique : la formation s'adresse aux dirigeants, responsables d'exploitation, chefs de projet et développeurs. Les templates sont des fichiers .md prêts à remplir, pas du code." } },
+    { "@type": "Question", "name": "Comment est livré le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Après votre commande, vous recevez un email sous 24 h ouvrées avec le lien de téléchargement : la formation en PDF et les templates en fichiers .md." } },
+    { "@type": "Question", "name": "Y a-t-il une garantie ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : garantie satisfait ou remboursé 14 jours, sans condition." } },
+    { "@type": "Question", "name": "Quelle est la différence entre les trois offres ?", "acceptedAnswer": { "@type": "Answer", "text": "29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi. 119 € : tout + la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz)." } },
+    { "@type": "Question", "name": "Le pack aide-t-il à respecter le RGPD ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : il vous aide à mettre en place le registre des agents, la matrice de risques et la procédure d'incident qui encadrent vos données personnelles, dans l'esprit des recommandations RGPD et CNIL." } }
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#1e293b; --ink2:#0f172a; --steel:#475569; --steel2:#334155; --steel3:#64748b;
+  --mist:#f1f5f9; --line:#e2e8f0; --paper:#ffffff;
+  --red:#ef4444; --red2:#dc2626; --red3:#b91c1c; --ok:#16a34a;
+  --display:'Oswald',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+section{position:relative}
+
+/* ---------- typo ---------- */
+.display{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;line-height:1.12;font-weight:700}
+.mono{font-family:var(--mono)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--steel3);margin-bottom:18px}
+.kicker::before{content:'';width:26px;height:2px;background:var(--red)}
+.sect-head{max-width:760px;margin:0 auto 52px;text-align:center}
+.sect-head .kicker{justify-content:center}
+.sect-head .kicker::before{display:none}
+h2{font-family:var(--display);font-size:clamp(28px,4vw,40px);text-transform:uppercase;line-height:1.15;letter-spacing:.01em}
+h3{font-family:var(--display);font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.lead{color:var(--steel3);font-size:17px;margin-top:14px}
+section.dark .lead,section.dark .kicker{color:#94a3b8}
+section.dark .kicker::before{background:var(--red)}
+
+/* ---------- boutons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:15px 30px;border:none;cursor:pointer;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;position:relative}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 10px 24px rgba(239,68,68,.28)}
+.btn-red:hover{background:var(--red2);box-shadow:0 14px 30px rgba(239,68,68,.35)}
+.btn-ghost{background:transparent;color:#e2e8f0;border:1px solid #475569}
+.btn-ghost:hover{border-color:var(--red);color:#fff}
+.btn-light{background:var(--ink);color:#fff}
+.btn-light:hover{background:var(--ink2)}
+
+/* ---------- bandes danger ---------- */
+.stripe{height:7px;background:repeating-linear-gradient(135deg,var(--red) 0 14px,var(--ink) 14px 28px);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:900;background:rgba(15,23,42,.96);backdrop-filter:blur(8px);border-bottom:1px solid #1e293b}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-ico{width:38px;height:38px;border-radius:8px;background:var(--ink2);border:1px solid var(--steel2);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--red)}
+.brand-name{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;font-size:17px}
+.brand-name b{color:var(--red);font-weight:700}
+.brand-sub{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--steel3);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:13px;padding:10px 18px;background:var(--red);color:#fff;text-decoration:none;font-weight:600}
+.nav-cta:hover{background:var(--red2)}
+#burger{display:none;background:none;border:1px solid var(--steel2);color:#fff;font-size:20px;width:42px;height:42px;cursor:pointer;border-radius:6px}
+#mobile-menu{display:none;flex-direction:column;background:var(--ink2);border-top:1px solid #1e293b;padding:10px 0}
+#mobile-menu a{color:#cbd5e1;text-decoration:none;padding:12px 24px;font-size:15px;border-bottom:1px solid #1e293b}
+#mobile-menu a:last-child{border-bottom:none}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ink2);color:#fff;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:88px 0 84px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.45);color:#fca5a5;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;margin-bottom:26px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-size:clamp(36px,5.2vw,58px);margin-bottom:22px}
+.hero h1 .red{color:var(--red)}
+.hero p.sub{color:#94a3b8;font-size:18px;max-width:520px;margin-bottom:32px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:var(--mono);font-size:12px;color:var(--steel3)}
+.hero-trust span{display:inline-flex;align-items:center;gap:7px}
+.hero-trust .ok{color:var(--red);font-weight:600}
+
+/* panneau de contrôle */
+.panel-wrap{position:relative}
+.panel{background:#0b1220;border:1px solid #263449;border-radius:12px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.panel-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#101b2e;border-bottom:1px solid #263449}
+.panel-bar .pdot{width:10px;height:10px;border-radius:50%}
+.panel-bar .ptitle{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:#7d8ea6;text-transform:uppercase;margin-left:6px}
+.panel-body{padding:6px 0}
+.p-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 18px;border-bottom:1px solid #16233c;font-family:var(--mono);font-size:12.5px}
+.p-row:last-child{border-bottom:none}
+.p-row .k{color:#64748b;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.p-row .v{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.p-row .v.danger{color:#f87171}
+.p-row .v.safe{color:#4ade80}
+.p-row .v .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.p-row .v.danger .dot{background:var(--red);animation:pulse 1.4s infinite}
+.p-row .v.safe .dot{background:var(--ok)}
+.panel-tag{position:absolute;top:-12px;right:18px;background:var(--red);color:#fff;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.1em;padding:6px 12px;box-shadow:0 6px 16px rgba(239,68,68,.4)}
+.panel-tag.green{background:var(--ok);box-shadow:0 6px 16px rgba(22,163,74,.4)}
+.panel-arrow{text-align:center;color:var(--steel3);font-size:22px;padding:8px 0;font-family:var(--mono)}
+
+/* ---------- alerte bar ---------- */
+.alertbar{background:var(--ink);border-top:1px solid var(--steel2);border-bottom:1px solid var(--steel2);padding:16px 0}
+.alertbar .container{display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:wrap;text-align:center}
+.alertbar .tag{background:var(--red);color:#fff;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.1em;padding:5px 10px;text-transform:uppercase}
+.alertbar p{color:#cbd5e1;font-size:14px}
+.alertbar b{color:#fff}
+.alertbar .src{font-family:var(--mono);font-size:11px;color:var(--steel3)}
+
+/* ---------- cartes douleurs ---------- */
+.pains{padding:96px 0;background:var(--paper)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pain{position:relative;background:var(--mist);border:1px solid var(--line);padding:34px 28px 28px;transition:transform .2s ease,box-shadow .2s ease}
+.pain:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(30,41,59,.1)}
+.pain::before,.pain::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--red);border-style:solid;transition:all .2s}
+.pain::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.pain::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fef2f2;border:1px solid #fecaca;color:var(--red3);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;margin-bottom:20px}
+.pain h3{font-size:22px;margin-bottom:12px}
+.pain p{color:var(--steel3);font-size:15px}
+.pain .faille{font-family:var(--mono);font-size:11px;color:var(--steel3);letter-spacing:.08em;text-transform:uppercase;margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);display:flex;justify-content:space-between}
+.pain .faille b{color:var(--red3);font-weight:600}
+
+/* ---------- méthode ---------- */
+.method{padding:96px 0;background:var(--steel2);color:#fff}
+.method .kicker{color:#94a3b8}
+.method h2{color:#fff}
+.method .lead{color:#cbd5e1}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:step}
+.step{background:rgba(15,23,42,.4);border:1px solid #475569;padding:34px 28px;position:relative;transition:border-color .2s,transform .2s}
+.step:hover{border-color:var(--red);transform:translateY(-4px)}
+.step-num{font-family:var(--display);font-weight:700;font-size:64px;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--red);margin-bottom:14px}
+.step h3{font-size:24px;color:#fff;margin-bottom:10px;letter-spacing:.04em}
+.step p{color:#cbd5e1;font-size:15px}
+.step .livrable{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fca5a5;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);padding:6px 11px}
+.step-arrow{position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:22px;z-index:2;font-family:var(--mono)}
+
+/* ---------- réflexes ---------- */
+.reflexes{padding:96px 0;background:var(--mist)}
+.reflex-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:44px}
+.reflex{background:var(--paper);border:1px solid var(--line);padding:22px 20px;position:relative;transition:border-color .2s,transform .2s}
+.reflex:hover{border-color:var(--red);transform:translateY(-3px)}
+.reflex .rn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--red);letter-spacing:.1em;display:block;margin-bottom:10px}
+.reflex h3{font-size:16.5px;line-height:1.3;margin-bottom:8px}
+.reflex p{color:var(--steel3);font-size:13.5px;line-height:1.55}
+.formation-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;background:var(--ink);color:#fff;padding:44px 40px;border-left:4px solid var(--red)}
+.formation-box h3{font-size:22px;margin-bottom:16px;color:#fff}
+.formation-box ul{list-style:none}
+.formation-box li{position:relative;padding:7px 0 7px 28px;color:#cbd5e1;font-size:15px}
+.formation-box li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700}
+.formation-box .fmeta{font-family:var(--mono);font-size:12px;color:#94a3b8;line-height:2}
+.formation-box .fmeta b{color:#fff}
+
+/* ---------- offres ---------- */
+.offres{padding:96px 0;background:var(--paper)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+.plan{position:relative;background:var(--mist);border:1px solid var(--line);padding:38px 30px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 22px 48px rgba(30,41,59,.12)}
+.plan.pop{background:var(--ink);border:2px solid var(--red);box-shadow:0 24px 56px rgba(239,68,68,.18);transform:scale(1.03)}
+.plan.pop:hover{transform:scale(1.03) translateY(-5px)}
+.ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;white-space:nowrap;box-shadow:0 8px 20px rgba(239,68,68,.4)}
+.plan .p-name{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--steel3);margin-bottom:14px}
+.plan.pop .p-name{color:#94a3b8}
+.plan .p-price{font-family:var(--display);font-weight:700;font-size:52px;line-height:1;margin-bottom:4px}
+.plan .p-price small{font-size:20px;color:var(--steel3);font-weight:500}
+.plan.pop .p-price{color:#fff}
+.plan .p-note{font-family:var(--mono);font-size:12px;color:var(--steel3);margin-bottom:22px}
+.plan.pop .p-note{color:#94a3b8}
+.plan ul{list-style:none;flex:1;margin-bottom:28px}
+.plan li{position:relative;padding:7px 0 7px 26px;color:var(--steel2);font-size:14.5px}
+.plan.pop li{color:#cbd5e1}
+.plan li::before{content:'▸';position:absolute;left:0;color:var(--red);font-weight:700}
+.plan .btn{width:100%}
+.plan.pop .btn{background:var(--red)}
+.plan.pop .btn:hover{background:var(--red2)}
+
+/* ---------- formulaire ---------- */
+.order{padding:96px 0;background:var(--ink2);color:#fff}
+.order h2{color:#fff}
+.order .lead{color:#94a3b8}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.order-left .kicker{color:#94a3b8}
+.order-left h2{margin-bottom:18px}
+.order-left p{color:#94a3b8;margin-bottom:26px;font-size:16px}
+.order-points{list-style:none}
+.order-points li{position:relative;padding:8px 0 8px 30px;color:#cbd5e1;font-size:15px}
+.order-points li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700;font-size:16px}
+.order-card{background:#0b1220;border:1px solid #263449;border-radius:12px;padding:34px 30px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px}
+.form-group input,.form-group select{width:100%;background:#101b2e;border:1px solid #263449;color:#fff;font-family:var(--body);font-size:15px;padding:13px 14px;border-radius:6px;outline:none;transition:border-color .15s}
+.form-group input:focus,.form-group select:focus{border-color:var(--red)}
+.form-group select option{background:var(--ink2);color:#fff}
+#err{display:none;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.5);color:#fca5a5;font-size:13.5px;padding:11px 14px;margin-bottom:18px;border-radius:6px}
+#ok{display:none;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.5);color:#86efac;font-size:14px;padding:16px;margin-bottom:18px;border-radius:6px;line-height:1.55}
+#ok b{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:15px;margin-bottom:4px}
+.form-submit{width:100%;background:var(--red);color:#fff;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:16px;padding:16px;border:none;cursor:pointer;transition:background .15s,transform .15s}
+.form-submit:hover{background:var(--red2)}
+.form-submit:disabled{opacity:.6;cursor:wait}
+.order-secure{margin-top:16px;font-family:var(--mono);font-size:12px;color:#64748b;text-align:center}
+
+/* ---------- FAQ ---------- */
+.faq{padding:96px 0;background:var(--mist)}
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{background:var(--paper);border:1px solid var(--line);margin-bottom:14px;border-left:3px solid transparent;transition:border-color .2s}
+.faq-item.open{border-left-color:var(--red)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;background:none;border:none;padding:20px 24px;cursor:pointer;font-family:var(--body);font-size:16px;font-weight:600;color:var(--ink)}
+.faq-q .fx{font-family:var(--display);color:var(--red);font-weight:700;font-size:18px;transition:transform .2s;flex:none}
+.faq-item.open .fx{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 24px 22px;color:var(--steel3);font-size:15px}
+.faq-item.open .faq-a{display:block}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink2);color:#94a3b8;border-top:1px solid #1e293b}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding:60px 0 40px}
+.foot-grid h4{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.foot-grid p{font-size:14px;line-height:1.7}
+.foot-grid a{display:block;color:#94a3b8;text-decoration:none;font-size:14px;padding:4px 0;transition:color .15s}
+.foot-grid a:hover{color:var(--red)}
+.foot-bottom{border-top:1px solid #1e293b;padding:20px 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:#475569}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .hero-badge .dot,.p-row .v.danger .dot{animation:none}
+}
+noscript .reveal{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:44px;padding:64px 0}
+  .pain-grid,.steps,.price-grid{grid-template-columns:1fr;gap:22px}
+  .step-arrow{display:none}
+  .plan.pop{transform:none}
+  .plan.pop:hover{transform:translateY(-5px)}
+  .reflex-grid{grid-template-columns:repeat(2,1fr)}
+  .formation-box{grid-template-columns:1fr;gap:26px;padding:34px 28px}
+  .order-grid{grid-template-columns:1fr;gap:40px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .nav-links,.nav-cta{display:none}
+  #burger{display:block}
+  .reflex-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+  .hero-trust{flex-direction:column;gap:8px}
+  .sect-head{margin-bottom:38px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <span class="brand-ico">🛡️</span>
+      <span>
+        <span class="brand-name">GARDE<b>-FOU</b> IA</span>
+        <span class="brand-sub">Sécurité des agents</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#douleurs">Douleurs</a>
+      <a href="#methode">Méthode</a>
+      <a href="#offres">Offres</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#commander">Sécuriser mes agents</a>
+    <button id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#douleurs">Douleurs</a>
+    <a href="#methode">Méthode</a>
+    <a href="#offres">Offres</a>
+    <a href="#faq">FAQ</a>
+    <a href="#commander" style="color:var(--red);font-weight:600">Sécuriser mes agents</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-badge"><span class="dot"></span>Pack de sécurité — Agents IA</span>
+      <h1 class="display">Votre agent IA travaille <span class="red">seul</span>.<br>Qui le surveille ?</h1>
+      <p class="sub">Fuites de données, erreurs silencieuses, usage incontrôlé : les entreprises déploient des agents IA sans garde-fous. Apprenez à les verrouiller en 7 réflexes, avec les mêmes exigences que pour vos serveurs.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-red" href="#commander">Sécuriser mes agents →</a>
+        <a class="btn btn-ghost" href="#methode">Voir la méthode</a>
+      </div>
+      <div class="hero-trust">
+        <span><span class="ok">✓</span> Formation PDF ~20 pages</span>
+        <span><span class="ok">✓</span> 10 templates prêts à l'emploi</span>
+        <span><span class="ok">✓</span> Livraison sous 24 h ouvrées</span>
+        <span><span class="ok">✓</span> Garantie 14 jours</span>
+      </div>
+    </div>
+    <div class="panel-wrap reveal">
+      <div class="panel">
+        <div class="panel-bar">
+          <span class="pdot" style="background:#f87171"></span>
+          <span class="pdot" style="background:#fbbf24"></span>
+          <span class="pdot" style="background:#4ade80"></span>
+          <span class="ptitle">Tableau de bord — Agent « Chloé »</span>
+        </div>
+        <div class="panel-body">
+          <div class="p-row"><span class="k">Statut</span><span class="v danger"><span class="dot"></span>SANS SURVEILLANCE</span></div>
+          <div class="p-row"><span class="k">Accès</span><span class="v danger"><span class="dot"></span>ADMIN — BOÎTE ENTIÈRE</span></div>
+          <div class="p-row"><span class="k">Données</span><span class="v danger"><span class="dot"></span>NON FILTRÉES</span></div>
+          <div class="p-row"><span class="k">Journal</span><span class="v danger"><span class="dot"></span>AUCUN</span></div>
+          <div class="p-row"><span class="k">Coût</span><span class="v danger"><span class="dot"></span>ILLIMITÉ</span></div>
+        </div>
+      </div>
+      <div class="panel-arrow">▼</div>
+      <div class="panel">
+        <div class="panel-bar">
+          <span class="pdot" style="background:#f87171"></span>
+          <span class="pdot" style="background:#fbbf24"></span>
+          <span class="pdot" style="background:#4ade80"></span>
+          <span class="ptitle">Après le pack — 7 réflexes actifs</span>
+        </div>
+        <div class="panel-body">
+          <div class="p-row"><span class="k">Statut</span><span class="v safe"><span class="dot"></span>SOUS CONTRÔLE</span></div>
+          <div class="p-row"><span class="k">Accès</span><span class="v safe"><span class="dot"></span>MOINDRE PRIVILÈGE</span></div>
+          <div class="p-row"><span class="k">Données</span><span class="v safe"><span class="dot"></span>LISTE INTERDITE ACTIVE</span></div>
+          <div class="p-row"><span class="k">Journal</span><span class="v safe"><span class="dot"></span>CHAQUE ACTION TRACÉE</span></div>
+          <div class="p-row"><span class="k">Coût</span><span class="v safe"><span class="dot"></span>PLAFONNÉ + ALERTE</span></div>
+        </div>
+      </div>
+      <span class="panel-tag">AVANT</span>
+      <span class="panel-tag green" style="top:auto;bottom:-12px">APRÈS</span>
+    </div>
+  </div>
+</section>
+<div class="stripe"></div>
+
+<!-- ============ ALERTE ============ -->
+<div class="alertbar">
+  <div class="container">
+    <span class="tag">Alerte</span>
+    <p><b>25 % des violations d'entreprise seront liées aux agents IA d'ici 2028</b> — <span class="src">prévision Gartner. Le pack vous prépare dès aujourd'hui.</span></p>
+  </div>
+</div>
+
+<!-- ============ DOULEURS ============ -->
+<section class="pains" id="douleurs">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.01 — Diagnostic</span>
+      <h2>Trois failles que vos agents ont déjà</h2>
+      <p class="lead">Un agent IA n'est pas un outil passif : il agit, il envoie, il décide. Sans garde-fous, chaque capacité devient un risque.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal">
+        <span class="badge">⚠ Fuite de données</span>
+        <h3>Vos données partent sans bruit</h3>
+        <p>Un prompt piégé, un accès trop large, un fichier confidentiel glissé dans le contexte : l'agent envoie à l'extérieur ce qu'il n'aurait jamais dû voir. Sans périmètre ni liste de données interdites, chaque agent est une porte ouverte.</p>
+        <div class="faille"><span>Cas type</span><b>Prompt injection</b></div>
+      </div>
+      <div class="pain reveal d1">
+        <span class="badge">⚠ Erreur silencieuse</span>
+        <h3>L'erreur devient la vérité</h3>
+        <p>Une hallucination, une mauvaise adresse, un chiffre faux : l'agent envoie, personne ne relit. Sans validation humaine sur les actions sensibles, l'erreur part comme si elle était vraie — et engage votre entreprise.</p>
+        <div class="faille"><span>Cas type</span><b>Hallucination</b></div>
+      </div>
+      <div class="pain reveal d2">
+        <span class="badge">⚠ Zéro procédure</span>
+        <h3>Quand ça casse, personne ne sait quoi faire</h3>
+        <p>Pas de registre des agents, pas de journal, pas de procédure d'incident. Le jour où un agent fait des dégâts, chacun improvise : les traces disparaissent, la responsabilité flotte, l'incident se reproduit.</p>
+        <div class="faille"><span>Cas type</span><b>Incident non géré</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section class="method" id="methode">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.02 — Protocole</span>
+      <h2>Trois étapes, comme un serveur</h2>
+      <p class="lead">On n'expose pas une machine sans pare-feu, on ne déploie pas un agent sans garde-fou. La même rigueur, en trois étapes.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>AUDITER</h3>
+        <p>Inventoriez vos agents : qui fait quoi, avec quels accès, sur quelles données ? Construisez la matrice de risques et le registre des agents avant toute décision.</p>
+        <span class="livrable">Matrice + registre fournis</span>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">02</div>
+        <h3>VERROUILLER</h3>
+        <p>Appliquez les 7 réflexes : moindre privilège, données interdites, validation humaine, journalisation, limites de coûts. Chaque accès se justifie, chaque action se borne.</p>
+        <span class="livrable">Politique + prompts fournis</span>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">03</div>
+        <h3>SURVEILLER</h3>
+        <p>Sortie d'incident prête, revue mensuelle calée : vous détectez, vous stoppez, vous apprenez. Vos agents restent utiles — et sous contrôle.</p>
+        <span class="livrable">Procédure + revue fournies</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉFLEXES ============ -->
+<section class="reflexes" id="reflexes">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.03 — Formation</span>
+      <h2>Les 7 réflexes de sécurité</h2>
+      <p class="lead">Le cœur du pack : une formation de 2 h 30, sans jargon, avec un cas fil rouge suivi de bout en bout.</p>
+    </div>
+    <div class="reflex-grid">
+      <div class="reflex reveal"><span class="rn">R.01</span><h3>Moindre privilège</h3><p>Chaque agent n'a que les accès strictement nécessaires à sa mission. Jamais admin, jamais toute la boîte.</p></div>
+      <div class="reflex reveal d1"><span class="rn">R.02</span><h3>Données interdites</h3><p>Une liste explicite de ce que l'agent ne doit jamais voir ni transmettre : mots de passe, données personnelles, secrets.</p></div>
+      <div class="reflex reveal d2"><span class="rn">R.03</span><h3>Validation humaine</h3><p>Les actions sensibles s'arrêtent devant un humain. Un point d'approbation, et l'erreur ne part plus seule.</p></div>
+      <div class="reflex reveal d3"><span class="rn">R.04</span><h3>Journalisation</h3><p>Chaque action est tracée : qui, quoi, quand, combien ça a coûté. On ne peut corriger que ce que l'on peut relire.</p></div>
+      <div class="reflex reveal"><span class="rn">R.05</span><h3>Limites de coûts</h3><p>Plafonds de tokens, budgets mensuels, alertes : un agent qui boucle ne ruine plus la facture en silence.</p></div>
+      <div class="reflex reveal d1"><span class="rn">R.06</span><h3>Sortie d'incident</h3><p>Un coupe-circuit connu de tous, une procédure écrite, des rôles clairs. Quand ça casse, on sait exactement quoi faire.</p></div>
+      <div class="reflex reveal d2"><span class="rn">R.07</span><h3>Revue mensuelle</h3><p>Un rendez-vous fixe : accès vérifiés, logs relus, agents inutiles retirés. La sécurité se maintient, elle ne s'installe pas une fois pour toutes.</p></div>
+      <div class="reflex reveal d3" style="background:var(--ink);border-color:var(--ink)">
+        <span class="rn" style="color:#fca5a5">BONUS</span>
+        <h3 style="color:#fff">10 templates prêts à l'emploi</h3>
+        <p style="color:#94a3b8">Politique d'usage, registre, prompts sécurisés, checklists, procédure d'incident, matrice de risques : à remplir, pas à inventer.</p>
+      </div>
+    </div>
+    <div class="formation-box reveal">
+      <div>
+        <h3>À l'intérieur de la formation</h3>
+        <ul>
+          <li>7 modules : leçon dense + exemple réel + exercice pratique</li>
+          <li>Le fil rouge « Nadia et Chloé » : un agent sécurisé de A à Z</li>
+          <li>Cas réels documentés : fuite Samsung, chatbot Air Canada, SUV vendu 1 dollar</li>
+          <li>Checklist de déploiement en 10 points</li>
+          <li>Glossaire : prompt injection, token, sandbox, kill switch…</li>
+        </ul>
+      </div>
+      <div class="fmeta">
+        <b>Format</b>&nbsp;PDF, ~20 pages<br>
+        <b>Durée</b>&nbsp;2 h 30 (lecture + exercices)<br>
+        <b>Cible</b>&nbsp;dirigeants, exploitation, chefs de projet, devs<br>
+        <b>Prérequis</b>&nbsp;aucun<br>
+        <b>Mise à jour</b>&nbsp;incluse pendant 12 mois<br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFRES ============ -->
+<section class="offres" id="offres">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.04 — Tarification</span>
+      <h2>Choisissez votre niveau de verrouillage</h2>
+      <p class="lead">Un seul paiement, sans abonnement. Livraison par email sous 24 h ouvrées, garantie satisfait ou remboursé 14 jours.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan reveal">
+        <span class="p-name">Formation</span>
+        <div class="p-price">29 <small>€</small></div>
+        <div class="p-note">Pour commencer à sécuriser</div>
+        <ul>
+          <li>Formation PDF « Les 7 réflexes de sécurité » (~20 pages)</li>
+          <li>Exemples réels : fuites, hallucinations, coûts explosés</li>
+          <li>Checklist de déploiement en 10 points</li>
+          <li>Glossaire complet</li>
+          <li>Mises à jour pendant 12 mois</li>
+        </ul>
+        <button class="btn btn-light" onclick="choisirOffre('Formation seule — 29 €')">Commander — 29 €</button>
+      </div>
+      <div class="plan pop reveal d1">
+        <span class="ribbon">Le plus choisi</span>
+        <span class="p-name">Formation + Templates</span>
+        <div class="p-price">59 <small>€</small></div>
+        <div class="p-note">Le pack complet prêt à l'emploi</div>
+        <ul>
+          <li>Tout de l'offre Formation (29 €)</li>
+          <li><b>10 templates</b> prêts à l'emploi, en 5 documents : politique d'usage + registre des agents, 3 prompts sécurisés, 2 checklists, procédure + fiche d'incident, matrice de risques</li>
+          <li>Fichiers .md à remplir, pas à inventer</li>
+          <li>Mises à jour pendant 12 mois</li>
+        </ul>
+        <button class="btn btn-red" onclick="choisirOffre('Formation + 10 templates — 59 € (le plus choisi)')">Commander — 59 €</button>
+      </div>
+      <div class="plan reveal d2">
+        <span class="p-name">Pack Entreprise</span>
+        <div class="p-price">119 <small>€</small></div>
+        <div class="p-note">Pour les équipes et les enjeux multiples</div>
+        <ul>
+          <li>Tout de l'offre Templates (59 €)</li>
+          <li>Procédure d'incident version entreprise : rôles RACI, escalade, communication, obligations CNIL</li>
+          <li>Kit de sensibilisation équipe : email d'annonce, atelier de 45 minutes, quiz de 10 questions</li>
+          <li>Mises à jour pendant 12 mois</li>
+        </ul>
+        <button class="btn btn-light" onclick="choisirOffre('Pack entreprise — 119 €')">Commander — 119 €</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMANDE ============ -->
+<section class="order" id="commander">
+  <div class="container order-grid">
+    <div class="order-left reveal">
+      <span class="kicker">SYS.05 — Commande</span>
+      <h2>Verrouillez vos agents dès aujourd'hui</h2>
+      <p>Chaque jour sans garde-fou est un risque de fuite, d'erreur ou d'incident. La commande prend 30 secondes, le déploiement des 7 réflexes prend une semaine — et vous tient ensuite toute la durée de vie de vos agents.</p>
+      <ul class="order-points">
+        <li>Réponse personnelle sous 24 h ouvrées avec le lien de téléchargement</li>
+        <li>Formation en PDF, templates en .md : utilisables sur tous vos outils</li>
+        <li>Garantie satisfait ou remboursé 14 jours, sans condition</li>
+        <li>Facture fournie sur demande</li>
+      </ul>
+    </div>
+    <div class="order-card reveal d1">
+      <form id="cmd-form" onsubmit="return commander(event)" novalidate>
+        <div id="err"></div>
+        <div id="ok"><b>✓ Commande envoyée !</b> Merci, votre demande est bien reçue. Vous recevrez une réponse par email sous 24 h ouvrées avec le lien de téléchargement du pack.</div>
+        <div class="form-group">
+          <label for="nom">Votre nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Prénom et nom" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Votre email</label>
+          <input type="email" id="email" name="email" placeholder="vous@entreprise.fr" required>
+        </div>
+        <div class="form-group">
+          <label for="offre">Offre choisie</label>
+          <select id="offre" name="offre">
+            <option value="Formation seule — 29 €">Formation seule — 29 €</option>
+            <option value="Formation + 10 templates — 59 € (le plus choisi)" selected>Formation + 10 templates — 59 € (le plus choisi)</option>
+            <option value="Pack entreprise — 119 €">Pack entreprise — 119 €</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Envoyer ma commande</button>
+        <p class="order-secure">🔒 Confirmation par email — paiement par virement ou message privé</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.06 — Questions</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">Qu'est-ce que le pack Garde-fou IA ?<span class="fx">+</span></button>
+        <div class="faq-a">Un pack de sécurité pour agents IA : une formation PDF sur les 7 réflexes (moindre privilège, données interdites, validation humaine, journalisation, limites de coûts, sortie d'incident, revue mensuelle) et des templates prêts à l'emploi. La version entreprise ajoute la procédure d'incident détaillée et le kit de sensibilisation équipe.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">En quoi un agent IA est-il différent d'un serveur ?<span class="fx">+</span></button>
+        <div class="faq-a">Un serveur exécute ce qu'on lui demande, de façon déterministe. Un agent IA reçoit des instructions, les interprète, décide et agit : il peut être manipulé par un prompt piégé, halluciner une donnée ou enchaîner des actions coûteuses sans que personne ne s'en aperçoive. C'est exactement pour cela qu'il faut des garde-fous.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Faut-il être développeur pour utiliser le pack ?<span class="fx">+</span></button>
+        <div class="faq-a">Non. Aucun prérequis technique : la formation s'adresse aux dirigeants, responsables d'exploitation, chefs de projet et développeurs. Les templates sont des fichiers .md prêts à remplir avec les noms de vos agents, vos accès et vos données — pas du code.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Quelle est la différence entre les trois offres ?<span class="fx">+</span></button>
+        <div class="faq-a">29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi (politique d'usage et registre, 3 prompts sécurisés, 2 checklists, procédure et fiche d'incident, matrice de risques). 119 € : tout + la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz).</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Comment est livré le pack ?<span class="fx">+</span></button>
+        <div class="faq-a">Après votre commande, vous recevez une réponse personnelle par email sous 24 h ouvrées, avec le lien de téléchargement : la formation en PDF et les templates en fichiers .md. Une facture peut être fournie sur demande.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Les templates sont-ils utilisables tels quels ?<span class="fx">+</span></button>
+        <div class="faq-a">Oui, ils sont rédigés pour être remplis en 30 minutes à 1 heure chacun : vous remplacez les exemples par vos propres agents, accès et données. La formation vous guide pas à pas pour chacun des 7 réflexes.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Le pack aide-t-il à respecter le RGPD ?<span class="fx">+</span></button>
+        <div class="faq-a">Oui : il vous aide à mettre en place le registre des agents, la matrice de risques et la procédure d'incident qui encadrent vos données personnelles, dans l'esprit des recommandations RGPD et CNIL. La version entreprise détaille notamment les obligations de notification en cas d'incident.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Y a-t-il une garantie ?<span class="fx">+</span></button>
+        <div class="faq-a">Oui : garantie satisfait ou remboursé 14 jours, sans condition. Si le pack ne vous apporte pas les réflexes de sécurité promis, écrivez-nous sous 14 jours et vous êtes remboursé.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:18px">
+          <span class="brand-ico">🛡️</span>
+          <span>
+            <span class="brand-name">GARDE<b>-FOU</b> IA</span>
+            <span class="brand-sub">Sécurité des agents</span>
+          </span>
+        </a>
+        <p>Le pack de sécurité qui permet aux entreprises de déployer leurs agents IA avec les mêmes réflexes que leurs serveurs : auditer, verrouiller, surveiller.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#douleurs">Les douleurs</a>
+        <a href="#methode">La méthode</a>
+        <a href="#offres">Les offres</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Le pack</h4>
+        <a href="#reflexes">Les 7 réflexes</a>
+        <a href="#commander">Commander</a>
+        <a href="#faq">Livraison et garantie</a>
+        <a href="#commander">Contact via formulaire</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Garde-fou IA — Tous droits réservés</span>
+      <span>Fait avec rigueur, en France 🇫🇷</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+/* ---------- EmailJS ---------- */
+var EMAILJS = { serviceId: 'service_cy1ytdb', templateId: 'template_xpo58cv', publicKey: '8Pui4ZEqxW2jRVF7h' };
+try { emailjs.init({ publicKey: EMAILJS.publicKey }); } catch (e) {}
+
+function commander(event) {
+  if (event && event.preventDefault) event.preventDefault();
+  var nom = document.getElementById('nom');
+  var email = document.getElementById('email');
+  var offre = document.getElementById('offre');
+  var err = document.getElementById('err');
+  var ok = document.getElementById('ok');
+  var btn = document.getElementById('submit-btn');
+  err.style.display = 'none';
+  ok.style.display = 'none';
+  var d = {
+    site: 'Garde-fou IA',
+    name: nom.value.trim(),
+    email: email.value.trim(),
+    question: 'Commande : ' + offre.value
+  };
+  if (!d.name) { err.textContent = 'Merci d\'indiquer votre nom.'; err.style.display = 'block'; nom.focus(); return false; }
+  if (!d.email || d.email.indexOf('@') === -1 || d.email.indexOf('.') === -1) { err.textContent = 'Merci d\'indiquer une adresse email valide.'; err.style.display = 'block'; email.focus(); return false; }
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+  emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, d)
+    .then(function () {
+      ok.style.display = 'block';
+      document.getElementById('cmd-form').reset();
+      document.getElementById('offre').value = 'Formation + 10 templates — 59 € (le plus choisi)';
+      btn.disabled = false;
+      btn.textContent = 'Envoyer ma commande';
+      ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(function (e) {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer ma commande';
+      err.textContent = 'Erreur d\'envoi : ' + (e && e.text ? e.text : 'réessayez dans un instant.') ;
+      err.style.display = 'block';
+    });
+  return false;
+}
+
+function choisirOffre(label) {
+  var offre = document.getElementById('offre');
+  for (var i = 0; i < offre.options.length; i++) {
+    if (offre.options[i].value === label) { offre.selectedIndex = i; break; }
+  }
+  document.getElementById('commander').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ---------- burger ---------- */
+document.getElementById('burger').addEventListener('click', function () {
+  var m = document.getElementById('mobile-menu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+});
+
+/* ---------- FAQ accordéon ---------- */
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  item.querySelector('.faq-q').addEventListener('click', function () {
+    var open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+    if (!open) item.classList.add('open');
+  });
+});
+
+/* ---------- reveal ---------- */
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+<script src="chatbot-config.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
