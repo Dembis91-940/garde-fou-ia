@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de déploiement sécurisé d'un agent IA — Score /100</title>
+<meta name="description" content="20 points de contrôle en 5 catégories (données, accès, journalisation, coûts, incidents) pour évaluer la sécurité d'un agent IA : score /100, verdict et actions prioritaires.">
+<meta name="theme-color" content="#0A0C12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0C12'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='none' stroke='%23FF3B30' stroke-width='4'/%3E%3Ctext x='32' y='43' font-family='Arial Black' font-size='20' font-weight='900' fill='%23ffffff' text-anchor='middle'%3E!%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Inter',sans-serif;
+    background-color:#0A0C12;
+    background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:34px 34px;
+    color:#E8EDF6; min-height:100vh; overflow-x:hidden;
+  }
+  h1,h2,h3,.kicker,.logo{font-family:'Rajdhani',sans-serif;letter-spacing:-.015em;color:#E8EDF6}
+  ::selection{background:#FF3B3040;color:#E8EDF6}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#0A0C12}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#FF3B30,#34D399);border-radius:8px;border:2px solid #0A0C12}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+
+  header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,120,110,.14);background:rgba(14,18,28,.6);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+  header .wrap{display:flex;align-items:center;gap:14px;width:100%}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:17px;color:#fff;text-decoration:none}
+  .logo .mark{width:38px;height:38px;border-radius:8px;background:#12151F;border:1px solid #5C6F8C;display:flex;align-items:center;justify-content:center;font-size:17px;color:#FF3B30}
+  .logo b{color:#FF3B30;font-weight:700}
+  .logo small{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;color:#8FA3BF;text-transform:uppercase}
+  header a.retour{margin-left:auto;color:#8FA3BF;text-decoration:none;font-weight:600;font-size:13px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+  header a.retour:hover{color:#FF3B30}
+
+  .kicker{margin-top:44px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FF3B30;background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.45);padding:7px 14px;border-radius:8px}
+  h1{font-size:clamp(30px,4.4vw,46px);font-weight:700;line-height:1.08;text-transform:uppercase;margin:16px 0 12px;max-width:820px}
+  h1 .red{color:#FF3B30}
+  .intro{color:#A9B6CC;font-size:16px;max-width:660px;line-height:1.7}
+  .intro strong{color:#E8EDF6}
+
+  .etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  .etape{background:rgba(14,18,28,.6);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid rgba(255,120,110,.14);border-radius:14px;padding:16px 16px 14px}
+  .etape .n{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:#FF3B30}
+  .etape p{font-size:13px;color:#A9B6CC;margin-top:5px;line-height:1.5}
+
+  .scorebar{display:flex;align-items:center;gap:18px;background:rgba(14,18,28,.6);border:1px solid rgba(255,120,110,.14);border-radius:16px;padding:20px 24px;margin-top:30px;backdrop-filter:blur(16px)}
+  .score-num{font-family:'Rajdhani',sans-serif;font-size:54px;font-weight:700;line-height:1;color:#8FA3BF;min-width:120px}
+  .score-num em{font-style:normal;font-size:20px;color:#5C6F8C}
+  .score-bar{flex:1;height:10px;background:#1b2330;border-radius:99px;overflow:hidden}
+  .score-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#FF3B30,#FFB020,#34D399);transition:width .6s ease}
+  .score-label{font-size:13px;color:#8FA3BF;margin-top:6px}
+  .score-label b{color:#E8EDF6}
+
+  .categorie{margin-top:34px}
+  .cat-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .cat-head h2{font-size:22px;text-transform:uppercase;letter-spacing:.04em}
+  .cat-head .cat-score{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8FA3BF;background:rgba(255,255,255,.05);border:1px solid rgba(255,120,110,.14);padding:4px 10px;border-radius:8px}
+  .cat-head .cat-score b{color:#34D399}
+  .cat-bar{height:4px;background:#1b2330;border-radius:99px;margin:8px 0 14px;overflow:hidden}
+  .cat-fill{height:100%;width:0;background:linear-gradient(90deg,#FF3B30,#FFB020,#34D399);border-radius:99px;transition:width .5s ease}
+  .item{display:flex;align-items:flex-start;gap:14px;background:rgba(14,18,28,.6);border:1px solid rgba(255,120,110,.14);border-radius:12px;padding:14px 16px;margin-bottom:10px;backdrop-filter:blur(12px)}
+  .item .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:#5C6F8C;padding-top:3px;min-width:26px}
+  .item .txt{flex:1;font-size:14px;line-height:1.55;color:#CBD5E1}
+  .item .txt b{color:#E8EDF6}
+  .item .tog{display:flex;gap:8px;flex:none}
+  .tog button{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid #334155;background:transparent;color:#64748B;border-radius:8px;padding:8px 16px;cursor:pointer;transition:all .18s ease;min-width:56px}
+  .tog button:hover{border-color:#8FA3BF;color:#E8EDF6}
+  .tog button.on-oui{background:rgba(52,211,153,.15);border-color:#34D399;color:#34D399;box-shadow:0 0 14px rgba(52,211,153,.25)}
+  .tog button.on-non{background:rgba(255,59,48,.15);border-color:#FF3B30;color:#FF6B63;box-shadow:0 0 14px rgba(255,59,48,.25)}
+
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,#FF3B30,#FFB020,#34D399);background-size:200% 200%;animation:f3gradmove 6s ease infinite;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:16px;border:none;cursor:pointer;border-radius:12px;padding:15px 30px;box-shadow:0 6px 24px rgba(255,59,48,.4);text-decoration:none;transition:transform .2s, box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,59,48,.5)}
+  @keyframes f3gradmove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .btn-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,120,110,.14);color:#E8EDF6;box-shadow:none;animation:none}
+  .btn-ghost:hover{border-color:#FF3B3088;box-shadow:0 6px 22px rgba(255,59,48,.35)}
+
+  .resultat{display:none;margin-top:40px}
+  .resultat.visible{display:block;animation:apparaitre .4s ease}
+  @keyframes apparaitre{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .verdict{border-radius:16px;padding:22px 26px;font-size:15.5px;line-height:1.75}
+  .verdict.green{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.45)}
+  .verdict.orange{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.45)}
+  .verdict.red{background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.5)}
+  .verdict b{color:#E8EDF6}
+  .verdict .big{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:6px}
+  .verdict.green .big{color:#34D399}
+  .verdict.orange .big{color:#FFB020}
+  .verdict.red .big{color:#FF3B30}
+
+  .priorites{margin-top:24px;background:rgba(14,18,28,.6);border:1px solid rgba(255,120,110,.14);border-radius:16px;padding:22px 24px;backdrop-filter:blur(16px)}
+  .priorites h3{font-size:19px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px;color:#E8EDF6}
+  .priorites .cat-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FA3BF;margin:12px 0 6px}
+  .prio{display:flex;align-items:flex-start;gap:12px;background:rgba(255,59,48,.06);border-left:3px solid #FF3B30;border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:14px;color:#CBD5E1;line-height:1.5}
+  .prio .idx{font-family:'JetBrains Mono',monospace;color:#FF3B30;font-weight:600;flex:none}
+  .empty-ok{display:flex;align-items:center;gap:10px;color:#34D399;font-size:14px;padding:8px 2px}
+
+  .cta-bloc{background:linear-gradient(160deg,rgba(18,21,31,.9),rgba(10,12,18,.95));border:1px solid rgba(255,120,110,.2);border-radius:18px;padding:36px;text-align:center;margin:44px 0 10px;backdrop-filter:blur(14px)}
+  .cta-bloc h2{font-size:clamp(22px,3vw,30px);font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+  .cta-bloc p{color:#A9B6CC;margin:12px auto 24px;max-width:540px;line-height:1.7}
+  .cta-bloc .prix{margin-top:14px;font-size:13px;color:#8FA3BF;font-family:'JetBrains Mono',monospace}
+  .cta-bloc .prix strong{color:#FF6B63}
+  footer{margin-top:46px;padding:26px 0 40px;border-top:1px solid rgba(255,255,255,.08);color:#5C6F8C;font-size:13px;text-align:center;line-height:1.8;font-family:'JetBrains Mono',monospace}
+  footer a{color:#8FA3BF;text-decoration:none}
+  footer a:hover{color:#FF3B30}
+
+  @media(max-width:680px){.etapes{grid-template-columns:1fr}.scorebar{flex-direction:column;align-items:flex-start;gap:10px}.item{flex-direction:column}.item .tog{width:100%}.tog button{flex:1}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="mark">🛡️</span><span>GARDE<b>-FOU</b> IA<small>Sécurité des agents</small></span></a>
+    <a class="retour" href="index.html">← Retour à l'accueil</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="kicker">Audit gratuit · 3 minutes · Sans inscription</div>
+  <h1>Votre agent IA peut-il être <span class="red">déployé en sécurité ?</span></h1>
+  <p class="intro">20 points de contrôle en 5 catégories — <strong>données, accès, journalisation, coûts, incidents</strong>. Répondez <strong>oui / non</strong> à chaque point : obtenez un score /100, un verdict clair et la liste des actions prioritaires avant tout déploiement.</p>
+
+  <div class="etapes">
+    <div class="etape"><div class="n">Étape 1</div><p>Répondez oui ou non aux 20 points, sans tricher — « non » tant que ce n'est pas prouvé.</p></div>
+    <div class="etape"><div class="n">Étape 2</div><p>Cliquez sur « Calculer mon score » : score /100 et verdict immédiat.</p></div>
+    <div class="etape"><div class="n">Étape 3</div><p>Traitez les actions prioritaires listées, puis exportez votre audit.</p></div>
+  </div>
+
+  <div class="scorebar">
+    <div class="score-num" id="score-num">—<em>/100</em></div>
+    <div style="flex:1">
+      <div class="score-bar"><div class="score-fill" id="score-fill"></div></div>
+      <div class="score-label" id="score-label">Répondez aux 20 points puis lancez le calcul.</div>
+    </div>
+  </div>
+
+  <div id="categories"></div>
+
+  <div class="actions">
+    <button class="btn" id="btn-calculer">🛡️ Calculer mon score →</button>
+    <button class="btn btn-ghost" id="btn-export">📋 Exporter l'audit en texte</button>
+    <button class="btn btn-ghost" id="btn-reset">↺ Réinitialiser</button>
+  </div>
+  <p style="font-size:12px;color:#5C6F8C;margin-top:12px;font-family:'JetBrains Mono',monospace">Vos réponses sont enregistrées localement dans votre navigateur. Rien n'est envoyé sur Internet.</p>
+
+  <div class="resultat" id="resultat">
+    <div class="verdict" id="verdict"></div>
+    <div class="priorites" id="priorites"></div>
+    <div class="actions" style="margin-top:22px">
+      <a class="btn btn-ghost" href="index.html#offres">📚 Le pack complet : 7 réflexes + 10 templates →</a>
+    </div>
+  </div>
+
+  <div class="cta-bloc">
+    <h2>Un agent sans garde-fou est une porte ouverte.</h2>
+    <p>Le pack Garde-fou IA vous donne la formation PDF sur les 7 réflexes de sécurité, 10 templates prêts à l'emploi (politique d'usage, registre, procédure d'incident…) et le kit de sensibilisation équipe.</p>
+    <a class="btn" href="index.html#offres">Sécuriser mes agents →</a>
+    <div class="prix">À partir de <strong>29 €</strong> — garantie satisfait ou remboursé 14 jours</div>
+  </div>
+</div>
+
+<footer>
+  © 2026 GARDE-FOU IA — Sécurité des agents. <a href="index.html">Retour au site</a>.<br>
+  Checklist d'audit indicative : elle ne remplace pas une analyse de risques réalisée par un professionnel.
+</footer>
+
+<script>
+(function(){
+  var LS_KEY = 'garde-fou-checklist-v1';
+  var CATS = [
+    { id:'donnees',  nom:'Données',      icone:'🗄️', items:[
+      "L'agent n'accède qu'aux données strictement nécessaires à sa mission (jamais toute la boîte).",
+      "Une liste de données interdites (mots de passe, données personnelles, secrets) est définie et appliquée.",
+      "Les fichiers sensibles sont exclus du contexte (exclusions, permissions, filtres de confidentialité).",
+      "Le fournisseur d'IA est évalué : localisation des données, pas de réutilisation pour l'entraînement."
+    ]},
+    { id:'acces',    nom:'Accès',        icone:'🔑', items:[
+      "Moindre privilège : l'agent a des permissions limitées, jamais admin, jamais d'accès global.",
+      "Les comptes et droits d'administration liés à l'agent sont limités à quelques personnes.",
+      "Une authentification forte (MFA) protège les comptes que l'agent peut utiliser.",
+      "L'agent ne peut pas modifier ses propres permissions, règles ou instructions."
+    ]},
+    { id:'journal',  nom:'Journalisation', icone:'📜', items:[
+      "Chaque action de l'agent est journalisée : qui, quoi, quand, sur quoi.",
+      "Les journaux sont conservés et protégés contre la modification (non révocables).",
+      "Une alerte existe en cas d'action anormale ou hors périmètre.",
+      "Les journaux sont relus régulièrement (revue hebdomadaire ou mensuelle planifiée)."
+    ]},
+    { id:'couts',    nom:'Coûts',        icone:'💶', items:[
+      "Un plafond de dépenses mensuel est défini pour l'agent (tokens, appels API).",
+      "Des alertes de dépassement sont actives et dirigent vers une personne responsable.",
+      "Le budget réel est suivi chaque mois et comparé au plafond.",
+      "Un arrêt automatique existe en cas de boucle coûteuse (kill switch de coûts)."
+    ]},
+    { id:'incidents', nom:'Incidents',   icone:'🚨', items:[
+      "Une procédure d'incident écrite existe : rôles, ordre des actions, communication.",
+      "Un coupe-circuit (kill switch) est connu de tous et testé régulièrement.",
+      "Les incidents passés sont documentés et analysés (post-mortem, actions correctives).",
+      "Une revue mensuelle de sécurité des agents est planifiée (accès, logs, pertinence)."
+    ]}
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var reponses = {};  /* cle : catIndex-itemIndex -> true (oui) / false (non) / null */
+
+  /* Construction de l'UI */
+  var catsHtml = '';
+  CATS.forEach(function(cat, ci){
+    catsHtml += '<div class="categorie"><div class="cat-head"><h2>'+cat.icone+' '+cat.nom+'</h2><span class="cat-score">Score : <b id="cs-'+ci+'">0</b>/20</span></div><div class="cat-bar"><div class="cat-fill" id="cf-'+ci+'"></div></div>';
+    cat.items.forEach(function(txt, ii){
+      var key = ci+'-'+ii;
+      catsHtml += '<div class="item" data-key="'+key+'">'
+        + '<span class="num">P.'+String(ci*4+ii+1).padStart(2,'0')+'</span>'
+        + '<div class="txt">'+txt+'</div>'
+        + '<div class="tog">'
+        + '<button class="oui" data-val="oui">Oui</button>'
+        + '<button class="non" data-val="non">Non</button>'
+        + '</div></div>';
+    });
+    catsHtml += '</div>';
+  });
+  $('categories').innerHTML = catsHtml;
+
+  /* Interactions oui/non */
+  function setReponse(key, val){
+    reponses[key] = val;
+    var item = document.querySelector('.item[data-key="'+key+'"]');
+    if (!item) return;
+    var bOui = item.querySelector('.oui'), bNon = item.querySelector('.non');
+    bOui.classList.toggle('on-oui', val === true);
+    bNon.classList.toggle('on-non', val === false);
+    majScorebar();
+    sauvegarder();
+  }
+  document.querySelectorAll('.item').forEach(function(item){
+    var key = item.dataset.key;
+    item.querySelector('.oui').addEventListener('click', function(){ setReponse(key, true); });
+    item.querySelector('.non').addEventListener('click', function(){ setReponse(key, false); });
+  });
+
+  /* Barre de score en direct */
+  function majScorebar(){
+    var total = 0; var repondu = 0;
+    Object.keys(reponses).forEach(function(k){
+      if (reponses[k] === true) total += 5;
+      if (reponses[k] !== null && reponses[k] !== undefined) repondu++;
+    });
+    $('score-num').innerHTML = total + '<em>/100</em>';
+    $('score-fill').style.width = total + '%';
+    $('score-label').innerHTML = repondu + ' / 20 points répondus' + (repondu < 20 ? ' — il vous reste ' + (20-repondu) + ' réponse' + (20-repondu>1?'s':'') + '.' : ' — lancez le calcul pour le verdict complet.');
+    var ci2 = 0;
+    CATS.forEach(function(cat, ci){
+      var s = 0;
+      cat.items.forEach(function(t, ii){ if (reponses[ci+'-'+ii] === true) s += 5; });
+      $('cs-'+ci).textContent = s;
+      $('cf-'+ci).style.width = (s/20*100) + '%';
+    });
+  }
+
+  /* Calcul complet */
+  function calculer(){
+    var total = 0; var repondu = 0;
+    CATS.forEach(function(cat, ci){
+      cat.items.forEach(function(txt, ii){
+        var k = ci+'-'+ii;
+        if (reponses[k] === true) total += 5;
+        if (reponses[k] !== undefined && reponses[k] !== null) repondu++;
+      });
+    });
+    if (repondu < 20){
+      alert('Il reste ' + (20-repondu) + ' point' + (20-repondu>1?'s':'') + ' sans réponse. Répondez à tous les points (Oui ou Non) pour obtenir un score fiable — rappel : tant que ce n\'est pas prouvé, c\'est « Non ».');
+      return;
+    }
+
+    var verdictEl = $('verdict');
+    var cls, titre, texte;
+    if (total >= 90){
+      cls='green'; titre='🟢 Déploiement sous contrôle'; texte='Score <b>'+total+'/100</b> : vos garde-fous sont en place sur les 5 catégories. Ne relâchez pas la vigilance : la sécurité d\'un agent se <b>maintient</b>, elle ne s\'installe pas une fois pour toutes. Planifiez la revue mensuelle et testez le kill switch au moins une fois par trimestre.';
+    } else if (total >= 70){
+      cls='orange'; titre='🟡 Risques résiduels — corrigez avant généralisation'; texte='Score <b>'+total+'/100</b> : la base est solide mais des points manquent. Ne déployez l\'agent qu\'avec un <b>périmètre restreint</b> (mode ombre, accès limités) et traitez les actions prioritaires ci-dessous avant d\'élargir.';
+    } else if (total >= 50){
+      cls='orange'; titre='🟠 Risques significatifs — ne déployez pas en l\'état'; texte='Score <b>'+total+'/100</b> : plusieurs garde-fous essentiels manquent. Un déploiement maintenant exposerait vos données, vos coûts et votre responsabilité. Traitez les actions prioritaires <b>avant</b> toute mise en production.';
+    } else {
+      cls='red'; titre='🔴 Déploiement risqué — à l\'arrêt'; texte='Score <b>'+total+'/100</b> : les garde-fous critiques ne sont pas en place. Un agent déployé dans cet état est une porte ouverte sur vos données et vos coûts. <b>Ne déployez pas</b> : traitez les points manquants dans l\'ordre ci-dessous, puis relancez cet audit.';
+    }
+    verdictEl.className = 'verdict ' + cls;
+    verdictEl.innerHTML = '<span class="big">'+titre+'</span>'+texte;
+
+    /* Actions prioritaires : points manquants (non ou sans réponse) */
+    var prio = $('priorites');
+    var html = '<h3>🔧 Actions prioritaires avant déploiement</h3>';
+    var manquants = 0;
+    CATS.forEach(function(cat, ci){
+      var list = [];
+      cat.items.forEach(function(txt, ii){
+        if (reponses[ci+'-'+ii] !== true) list.push({ txt:txt, num:ci*4+ii+1 });
+      });
+      if (list.length){
+        html += '<div class="cat-label">'+cat.icone+' '+cat.nom.toUpperCase()+' ('+list.length+' point'+(list.length>1?'s':'')+')</div>';
+        list.forEach(function(p){
+          manquants++;
+          html += '<div class="prio"><span class="idx">'+(manquants<10?'0':'')+manquants+'</span><span>'+p.txt+'</span></div>';
+        });
+      }
+    });
+    if (!manquants){
+      html += '<div class="empty-ok">✅ Aucun point manquant — maintien de la revue mensuelle et des tests du kill switch.</div>';
+    } else {
+      html += '<div class="cat-label" style="margin-top:14px">Total : '+manquants+' action'+(manquants>1?'s':'')+' à traiter</div>';
+    }
+    prio.innerHTML = html;
+
+    $('resultat').classList.add('visible');
+    $('resultat').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  /* Export texte */
+  function exporter(){
+    var total = 0;
+    CATS.forEach(function(cat, ci){
+      cat.items.forEach(function(txt, ii){ if (reponses[ci+'-'+ii] === true) total += 5; });
+    });
+    var lignes = [];
+    lignes.push('🛡️ AUDIT DE SÉCURITÉ D\'UN AGENT IA — GARDE-FOU IA');
+    lignes.push('Score global : '+total+'/100');
+    lignes.push('Date : ' + new Date().toLocaleDateString('fr-FR'));
+    lignes.push('');
+    CATS.forEach(function(cat, ci){
+      var s = 0;
+      cat.items.forEach(function(t, ii){ if (reponses[ci+'-'+ii] === true) s += 5; });
+      lignes.push('────── '+cat.icone+' '+cat.nom.toUpperCase()+' ('+s+'/20) ──────');
+      cat.items.forEach(function(txt, ii){
+        var k = ci+'-'+ii;
+        var etat = reponses[k] === true ? '[OUI]' : '[NON]';
+        lignes.push(etat+' P.'+String(ci*4+ii+1).padStart(2,'0')+' — '+txt);
+      });
+      lignes.push('');
+    });
+    lignes.push('Actions prioritaires (points NON cochés) :');
+    var cpt = 0;
+    CATS.forEach(function(cat, ci){
+      cat.items.forEach(function(txt, ii){
+        if (reponses[ci+'-'+ii] !== true){
+          cpt++;
+          lignes.push('  '+cpt+'. ['+cat.nom+'] '+txt);
+        }
+      });
+    });
+    if (!cpt) lignes.push('  Aucun — maintien de la revue mensuelle.');
+    lignes.push('');
+    lignes.push('Généré avec la Checklist de déploiement sécurisé — Garde-fou IA.');
+    var txt = lignes.join('\n');
+
+    function ok(){ alert('Audit copié dans le presse-papiers !'); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok).catch(function(){ fallback(txt, ok); });
+    } else { fallback(txt, ok); }
+  }
+  function fallback(txt, cb){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta); cb();
+  }
+
+  function sauvegarder(){
+    try { localStorage.setItem(LS_KEY, JSON.stringify(reponses)); } catch(e){}
+  }
+  function restaurer(){
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      Object.keys(d).forEach(function(k){
+        if (reponses.hasOwnProperty(k)) setReponse(k, d[k]);
+      });
+    } catch(e){}
+  }
+  function reset(){
+    try { localStorage.removeItem(LS_KEY); } catch(e){}
+    reponses = {};
+    document.querySelectorAll('.item').forEach(function(item){
+      item.querySelector('.oui').classList.remove('on-oui');
+      item.querySelector('.non').classList.remove('on-non');
+    });
+    majScorebar();
+    $('resultat').classList.remove('visible');
+  }
+
+  $('btn-calculer').addEventListener('click', calculer);
+  $('btn-export').addEventListener('click', exporter);
+  $('btn-reset').addEventListener('click', reset);
+
+  restaurer();
+  majScorebar();
+})();
+</script>
+</body>
+</html>

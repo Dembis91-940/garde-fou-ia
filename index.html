@@ -414,6 +414,21 @@ a{transition:color .3s ease}
 .f3-reveal.f3-in{opacity:1;transform:translateY(0)}
 #f3-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:linear-gradient(90deg,#FF3B30,#FFB020,#34D399);width:0;box-shadow:0 0 12px rgba(255,59,48,.4);border-radius:0 3px 3px 0}
 .badge{background:rgba(255,59,48,.14) !important;color:#FFB020 !important}
+/* ---------- Bouton outil ---------- */
+.btn-outil{
+  background:rgba(255,59,48,.10) !important;
+  border:1px solid rgba(255,59,48,.5) !important;
+  color:#ffb3ae !important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 0 24px -6px rgba(255,59,48,.3);
+}
+.btn-outil:hover{
+  background:rgba(255,59,48,.18) !important;
+  border-color:#FF3B30 !important;
+  color:#fff !important;
+  box-shadow:0 6px 28px rgba(255,59,48,.4);
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 </style></head>
@@ -455,6 +470,7 @@ a{transition:color .3s ease}
       <p class="sub">Fuites de données, erreurs silencieuses, usage incontrôlé : les entreprises déploient des agents IA sans garde-fous. Apprenez à les verrouiller en 7 réflexes, avec les mêmes exigences que pour vos serveurs.</p>
       <div class="hero-ctas">
         <a class="btn btn-red" href="#commander">Sécuriser mes agents →</a>
+        <a class="btn btn-outil" href="outil.html">🛡️ Faire l'audit gratuit →</a>
         <a class="btn btn-ghost" href="#methode">Voir la méthode</a>
       </div>
       <div class="hero-trust">
