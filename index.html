@@ -301,7 +301,117 @@ noscript .reveal{opacity:1;transform:none}
   .sect-head{margin-bottom:38px}
 }
 </style>
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style id="futur-v3">
+/* ============================================================
+   FUTUR V3 — REDLINE CONTROL — garde-fou-ia
+   2026-08-20
+   Overlay design : palette futuriste, glassmorphism, animations.
+   La structure HTML, les outils, EmailJS, chatbots et prix sont
+   intégralement préservés (ce bloc ne fait que styler).
+   ============================================================ */
+:root{
+  --ink: #E8EDF6;
+  --ink2: #A9B6CC;
+  --mist: #C7D2E2;
+  --line: rgba(255,255,255,.1);
+  --paper: #0A0C12;
+  --red: #FF3B30;
+  --red2: #D7261D;
+  --red3: rgba(255,59,48,.16);
+  --steel: #8FA3BF;
+  --steel2: #5C6F8C;
+  --steel3: rgba(143,163,191,.16);
+  --ok: #34D399;
+  --body: 'Inter',sans-serif;
+  --display: 'Rajdhani',sans-serif;
+  --mono: 'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background-color:#0A0C12 !important;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px) !important;
+  background-size:34px 34px !important;
+  color:#E8EDF6 !important;
+  font-family:'Inter',sans-serif !important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family:'Rajdhani',sans-serif !important;
+  letter-spacing:-.015em;
+  color:#E8EDF6 !important;
+}
+p,li,td,label{color:#A9B6CC}
+a{transition:color .3s ease}
+::selection{background:#FF3B3040;color:#E8EDF6}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#0A0C12}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#FF3B30,#34D399);border-radius:8px;border:2px solid #0A0C12}
+
+@keyframes f3float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vmax,-3vmax) scale(1.07)}66%{transform:translate(-3vmax,3vmax) scale(.96)}}
+@keyframes f3shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes f3pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,.4)}50%{box-shadow:0 0 0 14px transparent}}
+@keyframes f3gradmove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes f3floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.kicker,.badge,.danger{
+  background:linear-gradient(90deg,#FF3B30,#FFB020,#34D399);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent !important;
+  animation:f3shimmer 7s linear infinite;
+}
+.order-card,.formation-box,.panel,.faq-item,.plan,.livrable,.step,.reflex-grid .fx{
+  background:rgba(14,18,28,.6) !important;
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(255,120,110,.14) !important;
+  border-radius:18px;
+  box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.order-card,.formation-box,.panel,.faq-item,.plan,.livrable,.step,.reflex-grid .fx:hover{
+  transform:translateY(-4px);
+  border-color:#FF3B3066 !important;
+  box-shadow:0 12px 42px rgba(255,59,48,.4);
+}
+.nav,nav,header{
+  background:rgba(14,18,28,.6) !important;
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(255,120,110,.14);
+}
+.hero{
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(255,59,48,.14), transparent 60%), radial-gradient(760px 460px at 88% 12%, rgba(143,163,191,.12), transparent 62%), linear-gradient(165deg,#12151F 0%,#0A0C12 60%,#0E1018 100%) !important;
+}
+.btn{letter-spacing:.02em;font-weight:600;transition:all .3s ease;border-radius:12px}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{
+  background:linear-gradient(135deg,#FF3B30,#FFB020,#34D399) !important;
+  background-size:200% 200%;
+  animation:f3gradmove 6s ease infinite;
+  box-shadow:0 6px 24px rgba(255,59,48,.4);
+  border:none !important;
+  color:#FFFFFF !important;
+}
+.btn-red:hover{box-shadow:0 10px 36px rgba(255,59,48,.4);transform:translateY(-3px)}
+.btn-light,.btn-ghost{
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,120,110,.14) !important;
+  color:#E8EDF6 !important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.btn-light,.btn-ghost:hover{border-color:#FF3B3088 !important;box-shadow:0 6px 22px rgba(255,59,48,.4)}
+.kicker{text-transform:uppercase;letter-spacing:.16em;font-weight:700}
+.ribbon{animation:f3floaty 6s ease-in-out infinite}
+.f3-reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.f3-reveal.f3-in{opacity:1;transform:translateY(0)}
+#f3-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:linear-gradient(90deg,#FF3B30,#FFB020,#34D399);width:0;box-shadow:0 0 12px rgba(255,59,48,.4);border-radius:0 3px 3px 0}
+.badge{background:rgba(255,59,48,.14) !important;color:#FFB020 !important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+</style></head>
 <body>
 
 <header>
@@ -753,5 +863,26 @@ document.querySelectorAll('.faq-item').forEach(function (item) {
 </script>
 <script src="chatbot-config.js"></script>
 <script src="chatbot.js"></script>
-</body>
+<script id="f3-script">
+(function(){
+  if(document.getElementById('f3-progress'))return;
+  var p=document.createElement('div');p.id='f3-progress';document.body.appendChild(p);
+  var o=document.createElement('div');
+  o.style.cssText='position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden';
+  var orbs=["rgba(255,59,48,.20)","rgba(143,163,191,.16)","rgba(255,176,32,.12)"];
+  var pos=[['-15vmax','-15vmax','55vmax','55vmax','18s','normal'],['-12vmax','30%','45vmax','45vmax','24s','reverse'],['30%','-18vmax','40vmax','40vmax','21s','normal']];
+  for(var i=0;i<3;i++){var d=document.createElement('div');d.style.cssText='position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:f3float '+pos[i][4]+' ease-in-out infinite '+pos[i][5];
+    d.style.left=pos[i][0];d.style.top=pos[i][1];d.style.width=pos[i][2];d.style.height=pos[i][3];
+    d.style.background='radial-gradient(circle,'+orbs[i]+',transparent 60%)';o.appendChild(d);}
+  document.body.appendChild(o);
+  addEventListener('scroll',function(){var h=document.documentElement;var sc=(h.scrollTop||document.body.scrollTop);var m=h.scrollHeight-h.clientHeight;p.style.width=(m>0?(sc/m*100):0)+'%';},{passive:true});
+  var sel=null;
+  if(!sel)return;
+  var els=document.querySelectorAll(sel);
+  if(!('IntersectionObserver' in window)){for(var i=0;i<els.length;i++)els[i].classList.add('f3-in');return;}
+  for(var i=0;i<els.length;i++)els[i].classList.add('f3-reveal');
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('f3-in');io.unobserve(en.target);}});},{threshold:.1});
+  for(var i=0;i<els.length;i++)io.observe(els[i]);
+})();
+</script></body>
 </html>
