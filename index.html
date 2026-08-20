@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garde-fou IA — Déployez vos agents IA avec les mêmes réflexes que vos serveurs</title>
+<title>Garde-fou IA — Sécurisez vos agents IA comme vos serveurs</title>
 <meta name="description" content="Pack de sécurité pour agents IA : formation PDF sur les 7 réflexes de sécurité, 10 templates prêts à l'emploi, procédure d'incident et sensibilisation équipe. 29 €, 59 €, 119 €.">
 <meta name="theme-color" content="#1e293b">
 <meta property="og:type" content="website">
@@ -108,7 +108,7 @@ header{position:sticky;top:0;z-index:900;background:rgba(15,23,42,.96);backdrop-
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--red)}
-.nav-cta{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:13px;padding:10px 18px;background:var(--red);color:#fff;text-decoration:none;font-weight:600}
+.nav-cta{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:13px;padding:10px 18px;background:var(--red2);color:#fff;text-decoration:none;font-weight:600}
 .nav-cta:hover{background:var(--red2)}
 #burger{display:none;background:none;border:1px solid var(--steel2);color:#fff;font-size:20px;width:42px;height:42px;cursor:pointer;border-radius:6px}
 #mobile-menu{display:none;flex-direction:column;background:var(--ink2);border-top:1px solid #1e293b;padding:10px 0}
@@ -145,8 +145,8 @@ header{position:sticky;top:0;z-index:900;background:rgba(15,23,42,.96);backdrop-
 .p-row .v .dot{width:8px;height:8px;border-radius:50%;flex:none}
 .p-row .v.danger .dot{background:var(--red);animation:pulse 1.4s infinite}
 .p-row .v.safe .dot{background:var(--ok)}
-.panel-tag{position:absolute;top:-12px;right:18px;background:var(--red);color:#fff;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.1em;padding:6px 12px;box-shadow:0 6px 16px rgba(239,68,68,.4)}
-.panel-tag.green{background:var(--ok);box-shadow:0 6px 16px rgba(22,163,74,.4)}
+.panel-tag{position:absolute;top:-12px;right:18px;background:var(--red2);color:#fff;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.1em;padding:6px 12px;box-shadow:0 6px 16px rgba(239,68,68,.4)}
+.panel-tag.green{background:var(--ok);color:#06251B;box-shadow:0 6px 16px rgba(22,163,74,.4)}
 .panel-arrow{text-align:center;color:var(--steel3);font-size:22px;padding:8px 0;font-family:var(--mono)}
 
 /* ---------- alerte bar ---------- */
@@ -313,7 +313,7 @@ noscript .reveal{opacity:1;transform:none}
 :root{
   --ink: #E8EDF6;
   --ink2: #A9B6CC;
-  --mist: #C7D2E2;
+  --mist: #12151F;
   --line: rgba(255,255,255,.1);
   --paper: #0A0C12;
   --red: #FF3B30;
@@ -321,7 +321,7 @@ noscript .reveal{opacity:1;transform:none}
   --red3: rgba(255,59,48,.16);
   --steel: #8FA3BF;
   --steel2: #5C6F8C;
-  --steel3: rgba(143,163,191,.16);
+  --steel3: #8FA3BF;
   --ok: #34D399;
   --body: 'Inter',sans-serif;
   --display: 'Rajdhani',sans-serif;
@@ -369,6 +369,11 @@ a{transition:color .3s ease}
   box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
   transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
+.method{
+  background:#12151F !important;
+}
+.method .lead{color:#CBD5E1 !important}
+.method .kicker{color:#94A3B8 !important}
 .order-card,.formation-box,.panel,.faq-item,.plan,.livrable,.step,.reflex-grid .fx:hover{
   transform:translateY(-4px);
   border-color:#FF3B3066 !important;
@@ -584,7 +589,7 @@ a{transition:color .3s ease}
       <div class="reflex reveal"><span class="rn">R.05</span><h3>Limites de coûts</h3><p>Plafonds de tokens, budgets mensuels, alertes : un agent qui boucle ne ruine plus la facture en silence.</p></div>
       <div class="reflex reveal d1"><span class="rn">R.06</span><h3>Sortie d'incident</h3><p>Un coupe-circuit connu de tous, une procédure écrite, des rôles clairs. Quand ça casse, on sait exactement quoi faire.</p></div>
       <div class="reflex reveal d2"><span class="rn">R.07</span><h3>Revue mensuelle</h3><p>Un rendez-vous fixe : accès vérifiés, logs relus, agents inutiles retirés. La sécurité se maintient, elle ne s'installe pas une fois pour toutes.</p></div>
-      <div class="reflex reveal d3" style="background:var(--ink);border-color:var(--ink)">
+      <div class="reflex reveal d3" style="background:#12151F;border-color:#12151F">
         <span class="rn" style="color:#fca5a5">BONUS</span>
         <h3 style="color:#fff">10 templates prêts à l'emploi</h3>
         <p style="color:#94a3b8">Politique d'usage, registre, prompts sécurisés, checklists, procédure d'incident, matrice de risques : à remplir, pas à inventer.</p>
@@ -876,12 +881,12 @@ document.querySelectorAll('.faq-item').forEach(function (item) {
     d.style.background='radial-gradient(circle,'+orbs[i]+',transparent 60%)';o.appendChild(d);}
   document.body.appendChild(o);
   addEventListener('scroll',function(){var h=document.documentElement;var sc=(h.scrollTop||document.body.scrollTop);var m=h.scrollHeight-h.clientHeight;p.style.width=(m>0?(sc/m*100):0)+'%';},{passive:true});
-  var sel=null;
+  var sel=".hero,.pains,.method,.reflexes,.offres,.order,.faq";
   if(!sel)return;
   var els=document.querySelectorAll(sel);
   if(!('IntersectionObserver' in window)){for(var i=0;i<els.length;i++)els[i].classList.add('f3-in');return;}
   for(var i=0;i<els.length;i++)els[i].classList.add('f3-reveal');
-  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('f3-in');io.unobserve(en.target);}});},{threshold:.1});
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting||en.target.getBoundingClientRect().top<innerHeight){en.target.classList.add('f3-in');io.unobserve(en.target);}});},{threshold:.1});
   for(var i=0;i<els.length;i++)io.observe(els[i]);
 })();
 </script></body>
