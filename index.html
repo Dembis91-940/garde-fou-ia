@@ -738,7 +738,7 @@ a{transition:color .3s ease}
           </select>
         </div>
         <button type="submit" class="form-submit" id="submit-btn">Envoyer ma commande</button>
-        <p class="order-secure">🔒 Confirmation par email — paiement par virement ou message privé</p>
+        <p class="order-secure">🔒 Paiement en ligne sécurisé par Stripe (carte bancaire)</p>
       </form>
     </div>
   </div>
@@ -822,58 +822,34 @@ a{transition:color .3s ease}
       <span>Fait avec rigueur, en France 🇫🇷</span>
     </div>
   </div>
+  <div style="margin-top:.6rem;font-size:.82rem;opacity:.75"><a href="cgv.html">CGV</a> · <a href="mentions-legales.html">Mentions légales</a></div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-/* ---------- EmailJS ---------- */
-var EMAILJS = { serviceId: 'service_cy1ytdb', templateId: 'template_xpo58cv', publicKey: '8Pui4ZEqxW2jRVF7h' };
-try { emailjs.init({ publicKey: EMAILJS.publicKey }); } catch (e) {}
+/* ---------- Stripe : paiement (remplace EmailJS) ---------- */
+var STRIPE_LINKS = {
+  'Formation seule — 29 €': 'https://buy.stripe.com/4gMeVf9b04PP12R6e0frW08',
+  'Formation + 10 templates — 59 € (le plus choisi)': 'https://buy.stripe.com/9B6eVfaf44PP3aZ45SfrW09',
+  'Pack entreprise — 119 €': 'https://buy.stripe.com/5kQ8wR86WdmleTHcCofrW0a'
+};
+function lienStripe(label) {
+  if (STRIPE_LINKS[label]) return STRIPE_LINKS[label];
+  var m = /(\d+)\s*€/.exec(label);
+  for (var k in STRIPE_LINKS) {
+    if (STRIPE_LINKS.hasOwnProperty(k) && k.indexOf('— ' + m[1] + ' €') !== -1) return STRIPE_LINKS[k];
+  }
+  return STRIPE_LINKS['Formation seule — 29 €'];
+}
 
 function commander(event) {
   if (event && event.preventDefault) event.preventDefault();
-  var nom = document.getElementById('nom');
-  var email = document.getElementById('email');
   var offre = document.getElementById('offre');
-  var err = document.getElementById('err');
-  var ok = document.getElementById('ok');
-  var btn = document.getElementById('submit-btn');
-  err.style.display = 'none';
-  ok.style.display = 'none';
-  var d = {
-    site: 'Garde-fou IA',
-    name: nom.value.trim(),
-    email: email.value.trim(),
-    question: 'Commande : ' + offre.value
-  };
-  if (!d.name) { err.textContent = 'Merci d\'indiquer votre nom.'; err.style.display = 'block'; nom.focus(); return false; }
-  if (!d.email || d.email.indexOf('@') === -1 || d.email.indexOf('.') === -1) { err.textContent = 'Merci d\'indiquer une adresse email valide.'; err.style.display = 'block'; email.focus(); return false; }
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours…';
-  emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, d)
-    .then(function () {
-      ok.style.display = 'block';
-      document.getElementById('cmd-form').reset();
-      document.getElementById('offre').value = 'Formation + 10 templates — 59 € (le plus choisi)';
-      btn.disabled = false;
-      btn.textContent = 'Envoyer ma commande';
-      ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    })
-    .catch(function (e) {
-      btn.disabled = false;
-      btn.textContent = 'Envoyer ma commande';
-      err.textContent = 'Erreur d\'envoi : ' + (e && e.text ? e.text : 'réessayez dans un instant.') ;
-      err.style.display = 'block';
-    });
+  window.location.href = lienStripe(offre ? offre.value : 'Formation seule — 29 €');
   return false;
 }
 
 function choisirOffre(label) {
-  var offre = document.getElementById('offre');
-  for (var i = 0; i < offre.options.length; i++) {
-    if (offre.options[i].value === label) { offre.selectedIndex = i; break; }
-  }
-  document.getElementById('commander').scrollIntoView({ behavior: 'smooth' });
+  window.location.href = lienStripe(label);
 }
 
 /* ---------- burger ---------- */
