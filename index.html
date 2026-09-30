@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Garde-fou IA — Sécurisez vos agents IA comme vos serveurs</title>
-<meta name="description" content="Pack de sécurité pour agents IA : formation PDF sur les 7 réflexes de sécurité, 10 templates prêts à l'emploi, procédure d'incident et sensibilisation équipe. 29 €, 59 €, 119 €.">
+<meta name="description" content="Pack de sécurité pour agents IA : formation PDF sur les 7 réflexes, 10 templates prêts à l'emploi, procédure d'incident et sensibilisation équipe — plus le module Gouvernance (coûts des agents, serveurs MCP, revue des skills). 29 €, 39 €, 59 €, 119 €.">
 <meta name="theme-color" content="#1e293b">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -49,7 +49,8 @@
     { "@type": "Question", "name": "Faut-il être développeur pour utiliser le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Aucun prérequis technique : la formation s'adresse aux dirigeants, responsables d'exploitation, chefs de projet et développeurs. Les templates sont des fichiers .md prêts à remplir, pas du code." } },
     { "@type": "Question", "name": "Comment est livré le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Après votre commande, vous recevez un email sous 24 h ouvrées avec le lien de téléchargement : la formation en PDF et les templates en fichiers .md." } },
     { "@type": "Question", "name": "Y a-t-il une garantie ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : garantie satisfait ou remboursé 14 jours, sans condition." } },
-    { "@type": "Question", "name": "Quelle est la différence entre les trois offres ?", "acceptedAnswer": { "@type": "Answer", "text": "29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi. 119 € : tout + la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz)." } },
+    { "@type": "Question", "name": "Quelle est la différence entre les trois offres ?", "acceptedAnswer": { "@type": "Answer", "text": "29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi. 119 € : tout + le module Gouvernance des agents (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Le module Gouvernance est aussi vendu seul à 39 €." } },
+    { "@type": "Question", "name": "Comment savoir ce que mes agents IA me coûtent ?", "acceptedAnswer": { "@type": "Answer", "text": "Un agent qui part en boucle continue de facturer des tokens. Le module Gouvernance fournit une grille de suivi des coûts par agent et par modèle (coût par appel, par mois, par an), un budget mensuel, un seuil d'alerte à 80 % et des règles de coupure, ainsi qu'un calculateur gratuit qui fonctionne entièrement dans votre navigateur, sans envoi de données." } },
     { "@type": "Question", "name": "Le pack aide-t-il à respecter le RGPD ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : il vous aide à mettre en place le registre des agents, la matrice de risques et la procédure d'incident qui encadrent vos données personnelles, dans l'esprit des recommandations RGPD et CNIL." } }
   ]
 }
@@ -466,6 +467,7 @@ a{transition:color .3s ease}
       <a href="#douleurs">Douleurs</a>
       <a href="#methode">Méthode</a>
       <a href="#offres">Offres</a>
+      <a href="gouvernance-agents.html">Gouvernance</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="nav-cta" href="#commander">Sécuriser mes agents</a>
@@ -475,6 +477,8 @@ a{transition:color .3s ease}
     <a href="#douleurs">Douleurs</a>
     <a href="#methode">Méthode</a>
     <a href="#offres">Offres</a>
+    <a href="gouvernance-agents.html">Module Gouvernance des agents</a>
+    <a href="outil-gouvernance.html">Outil coûts &amp; registre MCP</a>
     <a href="#faq">FAQ</a>
     <a href="#commander" style="color:var(--red);font-weight:600">Sécuriser mes agents</a>
   </div>
@@ -652,6 +656,59 @@ a{transition:color .3s ease}
   </div>
 </section>
 
+<!-- ============ MODULE GOUVERNANCE ============ -->
+<section class="pains" id="gouvernance">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.03b — Module Gouvernance des agents</span>
+      <h2>Vos agents coûtent-ils plus que prévu ? Qui décide de ce qu'ils peuvent toucher ?</h2>
+      <p class="lead">La sécurité ne suffit pas à gouverner : il faut chiffrer les coûts, plafonner les dépenses et contrôler les outils branchés à vos agents (serveurs MCP). C'est le module Gouvernance.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal">
+        <span class="badge">Angle mort 01</span>
+        <h3>La facture sans propriétaire</h3>
+        <p>Un agent qui part en boucle ne plante pas : il continue de payer. Sans budget, sans seuil d'alerte et sans règle de coupure, la dérive n'est vue qu'à la fin du mois.</p>
+        <div class="faille"><span>Livrable</span><b>Grille de coûts + règles de coupure</b></div>
+      </div>
+      <div class="pain reveal d1">
+        <span class="badge">Angle mort 02</span>
+        <h3>Les outils branchés dans l'urgence</h3>
+        <p>Chaque serveur MCP ajouté est une permission accordée : écrire, envoyer, supprimer, payer. Sans registre ni authentification révocable, personne ne sait ce qui est ouvert.</p>
+        <div class="faille"><span>Livrable</span><b>Registre MCP + score de risque</b></div>
+      </div>
+      <div class="pain reveal d2">
+        <span class="badge">Angle mort 03</span>
+        <h3>Les compétences jamais relues</h3>
+        <p>Deux consignes contradictoires, une skill inutile depuis six mois, une règle qui n'a plus de propriétaire : l'agent devient imprévisible sans qu'aucune alerte ne se déclenche.</p>
+        <div class="faille"><span>Livrable</span><b>Revue trimestrielle des skills</b></div>
+      </div>
+    </div>
+    <div class="formation-box reveal" style="margin-top:34px">
+      <div>
+        <h3>Le module Gouvernance en une ligne</h3>
+        <ul>
+          <li><b>8 templates</b> en 3 documents : coûts des agents, gouvernance MCP, revue des skills</li>
+          <li><b>Outil de calcul gratuit</b> : coût par agent, budget, plafonds, registre MCP avec score de risque</li>
+          <li>100 % local : vos chiffres ne quittent pas votre poste, aucun compte</li>
+          <li><b>39 €</b> seul — ou <b>inclus dans le Pack Entreprise à 119 €</b></li>
+        </ul>
+      </div>
+      <div class="fmeta">
+        <b>Format</b>&nbsp;3 documents .md + outil HTML<br>
+        <b>Usage</b>&nbsp;1 réunion de décision, puis 1 revue par trimestre<br>
+        <b>Cible</b>&nbsp;direction, exploitation, DSI, chefs de projet<br>
+        <b>Prérequis</b>&nbsp;aucun<br>
+        <b>Bonus</b>&nbsp;outil de calcul accessible librement
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px">
+      <a class="btn btn-red" href="gouvernance-agents.html">Voir le module Gouvernance →</a>
+      <a class="btn btn-outil" href="outil-gouvernance.html">🛡 Calculer mes coûts d'agents (gratuit)</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ OFFRES ============ -->
 <section class="offres" id="offres">
   <div class="container">
@@ -693,6 +750,7 @@ a{transition:color .3s ease}
         <div class="p-note">Pour les équipes et les enjeux multiples</div>
         <ul>
           <li>Tout de l'offre Templates (59 €)</li>
+          <li><b>Module Gouvernance des agents</b> : coûts des agents et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — <b>8 templates</b> en plus</li>
           <li>Procédure d'incident version entreprise : rôles RACI, escalade, communication, obligations CNIL</li>
           <li>Kit de sensibilisation équipe : email d'annonce, atelier de 45 minutes, quiz de 10 questions</li>
           <li>Mises à jour pendant 12 mois</li>
@@ -766,7 +824,7 @@ a{transition:color .3s ease}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Quelle est la différence entre les trois offres ?<span class="fx">+</span></button>
-        <div class="faq-a">29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi (politique d'usage et registre, 3 prompts sécurisés, 2 checklists, procédure et fiche d'incident, matrice de risques). 119 € : tout + la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz).</div>
+        <div class="faq-a">29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi (politique d'usage et registre, 3 prompts sécurisés, 2 checklists, procédure et fiche d'incident, matrice de risques). 119 € : tout + le <b>module Gouvernance des agents</b> (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Le module Gouvernance existe aussi seul, à 39 €.</div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Comment est livré le pack ?<span class="fx">+</span></button>
@@ -812,9 +870,11 @@ a{transition:color .3s ease}
       <div>
         <h4>Le pack</h4>
         <a href="#reflexes">Les 7 réflexes</a>
+        <a href="gouvernance-agents.html">Module Gouvernance des agents</a>
+        <a href="outil-gouvernance.html">Outil coûts &amp; registre MCP</a>
+        <a href="outil.html">Audit sécurité /100</a>
         <a href="#commander">Commander</a>
         <a href="#faq">Livraison et garantie</a>
-        <a href="#commander">Contact via formulaire</a>
       </div>
     </div>
     <div class="foot-bottom">

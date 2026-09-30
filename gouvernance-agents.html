@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module Gouvernance des agents — coûts, skills, serveurs MCP | Garde-fou IA</title>
+<meta name="description" content="Ce que vos agents IA coûtent vraiment, ce qu'ils ont le droit de toucher : suivi des coûts et plafonds de coupure, revue des skills, registre des serveurs MCP. 8 templates + outil de calcul. 39 €, ou inclus dans le Pack Entreprise.">
+<meta name="theme-color" content="#0A0C12">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Garde-fou IA">
+<meta property="og:title" content="Module Gouvernance des agents — coûts, skills, serveurs MCP">
+<meta property="og:description" content="Un agent qui boucle ne plante pas : il continue de payer. Coûts, skills, permissions MCP : les documents et l'outil de calcul pour gouverner vos agents. 39 €, inclus dans le Pack Entreprise.">
+<meta property="og:url" content="https://dembis91-940.github.io/garde-fou-ia/gouvernance-agents.html">
+<meta property="og:image" content="https://dembis91-940.github.io/garde-fou-ia/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e293b'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='none' stroke='%23ef4444' stroke-width='4'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='%23ef4444' opacity='0.15'/%3E%3Ctext x='32' y='43' font-family='Arial Black' font-size='20' font-weight='900' fill='%23ffffff' text-anchor='middle'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Garde-fou IA — Module Gouvernance des agents (coûts, skills, serveurs MCP)",
+  "description": "Module de gouvernance pour agents IA : suivi des coûts par agent et modèle, plafonds de coupure, revue des skills, checklist de sélection et registre des serveurs MCP, politique des outils autorisés. 8 templates en 3 documents + outil de calcul local.",
+  "brand": { "@type": "Brand", "name": "Garde-fou IA" },
+  "offers": {
+    "@type": "Offer",
+    "price": "39",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://dembis91-940.github.io/garde-fou-ia/gouvernance-agents.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Qu'est-ce que le module Gouvernance des agents ?", "acceptedAnswer": { "@type": "Answer", "text": "L'extension du pack Garde-fou IA consacrée à trois sujets que la sécurité classique ne couvre pas : le coût réel des agents (tokens, appels, budget), la revue des skills et des outils qu'un agent peut appeler, et le registre des serveurs MCP avec score de risque. 8 templates en 3 documents, plus un outil de calcul gratuit." } },
+    { "@type": "Question", "name": "Est-ce déjà inclus dans une offre existante ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : le module est inclus dans le Pack Entreprise à 119 €. Il peut aussi être acheté seul à 39 € si vous possédez déjà la formation seule (29 €)." } },
+    { "@type": "Question", "name": "Pourquoi un module sur les coûts ?", "acceptedAnswer": { "@type": "Answer", "text": "Parce qu'un agent qui part en boucle ne s'arrête pas : il continue de facturer des tokens. Les relevés de marché 2026 montrent une forte hausse des budgets d'infrastructure IA (infrastructure LLM et FinOps parmi les compétences les plus recherchées), et les équipes techniques rapportent des factures multipliées sans alerte. Le module pose un budget, un seuil d'alerte et une règle de coupure." } },
+    { "@type": "Question", "name": "Qu'est-ce qu'un serveur MCP et pourquoi le contrôler ?", "acceptedAnswer": { "@type": "Answer", "text": "MCP est le standard qui donne des outils à vos agents : lire un CRM, écrire dans un ticket, envoyer un email, payer. Chaque serveur branché est une permission accordée. Le module fournit une checklist de sélection en 12 points et un registre qui note le risque de chaque serveur (lecture seule, suppression, données personnelles, authentification, journalisation)." } },
+    { "@type": "Question", "name": "Faut-il un compte ou un logiciel particulier ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Les templates sont des fichiers .md à remplir et l'outil de calcul fonctionne dans le navigateur, hors ligne : aucune donnée n'est envoyée, aucun compte n'est nécessaire." } }
+  ]
+}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  :root{
+    --ink:#E8EDF6; --ink2:#0f172a; --mist:#12151F; --paper:#0A0C12;
+    --line:rgba(255,255,255,.1); --steel:#8FA3BF;
+    --red:#FF3B30; --red2:#D7261D; --rred:rgba(255,59,48,.14);
+    --ok:#34D399;
+    --display:'Rajdhani',sans-serif; --body:'Inter',sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:36px 36px}
+  h1,h2,h3,.display{font-family:var(--display);text-transform:uppercase;letter-spacing:.015em;line-height:1.1;font-weight:700}
+  ::selection{background:var(--rred)}
+  .container{max-width:1120px;margin:0 auto;padding:0 24px}
+  a{color:var(--red)}
+  header{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);background:rgba(10,12,18,.78);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+  .brand-ico{width:38px;height:38px;border-radius:9px;background:var(--mist);border:1px solid #5C6F8C;display:flex;align-items:center;justify-content:center;font-size:17px}
+  .brand-name{display:block;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.09em;text-transform:uppercase}
+  .brand-name b{color:var(--red)}
+  .brand-sub{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{color:var(--steel);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--red)}
+  .nav-cta{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;padding:11px 20px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;border-radius:9px}
+  .nav-cta:hover{background:var(--red2)}
+  #burger{display:none;background:none;border:1px solid var(--line);color:#fff;font-size:18px;padding:6px 12px;border-radius:8px}
+  #mobile-menu{display:none;flex-direction:column;gap:2px;padding:10px 24px 18px}
+  #mobile-menu a{color:var(--steel);text-decoration:none;padding:9px 0;font-size:15px}
+  @media(max-width:820px){.nav-links,.nav-cta{display:none}#burger{display:block}}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FF6B60;background:var(--rred);border:1px solid rgba(255,59,48,.4);padding:7px 14px;border-radius:8px}
+  .hero{padding:74px 0 64px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+  .hero h1{font-size:clamp(32px,4.6vw,54px);margin:20px 0 20px}
+  .hero h1 b{color:var(--red)}
+  .hero p.sub{color:var(--steel);font-size:17.5px;max-width:560px;margin-bottom:28px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:14.5px;padding:14px 26px;border-radius:10px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-red{background:var(--red);color:#fff;box-shadow:0 12px 26px rgba(255,59,48,.26)}
+  .btn-red:hover{background:var(--red2)}
+  .btn-ghost{background:transparent;color:#E2E8F0;border-color:#475569}
+  .btn-ghost:hover{border-color:var(--red);color:#fff}
+  .trust{display:flex;flex-wrap:wrap;gap:9px 20px;font-family:var(--mono);font-size:12px;color:var(--steel)}
+  .trust b{color:var(--red);font-weight:600}
+  .panel{background:linear-gradient(180deg,#12151F,#0E1119);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .panel-bar{display:flex;gap:7px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:12px}
+  .pdot{width:9px;height:9px;border-radius:50%}
+  .ptitle{font-family:var(--mono);font-size:11px;color:var(--steel);margin-left:8px;letter-spacing:.1em;text-transform:uppercase}
+  .prow{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12.5px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+  .prow:last-child{border-bottom:none}
+  .prow .k{color:var(--steel)}
+  .prow .v{color:#FBBF24}
+  .prow .v.danger{color:#FF6B60}
+  .prow .v.ok{color:var(--ok)}
+  section{padding:74px 0;border-bottom:1px solid var(--line)}
+  .sect-head{max-width:740px;margin:0 auto 46px;text-align:center}
+  .sect-head h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:12px}
+  .sect-head p{color:var(--steel);font-size:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}}
+  .card{background:var(--mist);border:1px solid var(--line);border-radius:14px;padding:26px}
+  .card h3{font-size:20px;margin-bottom:10px}
+  .card p{color:var(--steel);font-size:14.5px}
+  .num{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FF6B60;display:block;margin-bottom:12px}
+  .stat b{display:block;font-family:var(--display);font-size:40px;color:#fff;line-height:1.05}
+  .stat span{color:var(--steel);font-size:13.5px;display:block;margin-top:8px}
+  .stat em{display:block;font-family:var(--mono);font-size:10.5px;color:#5C6F8C;margin-top:8px;font-style:normal}
+  .list{list-style:none;display:grid;gap:12px;margin-top:6px}
+  .list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:#DCE4F0}
+  .list li b{color:#fff}
+  .list .tick{color:var(--red);font-weight:700;flex:0 0 auto}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:900px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--mist);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.16em}
+  .step h3{font-size:19px;margin:10px 0 8px}
+  .step p{color:var(--steel);font-size:14.5px}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  @media(max-width:960px){.price-grid{grid-template-columns:1fr}}
+  .plan{position:relative;background:var(--mist);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column}
+  .plan.pop{border-color:rgba(255,59,48,.55);box-shadow:0 22px 50px rgba(255,59,48,.13)}
+  .plan .ribbon{position:absolute;top:-12px;left:26px;background:var(--red);color:#fff;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .pname{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+  .pprice{font-family:var(--display);font-size:44px;font-weight:700;color:#fff;line-height:1.1;margin:8px 0 4px}
+  .pprice small{font-size:17px;color:var(--steel)}
+  .pnote{color:#5C6F8C;font-size:13px;margin-bottom:18px}
+  .plan ul{list-style:none;display:grid;gap:10px;margin-bottom:22px}
+  .plan li{font-size:14.5px;color:#CBD6E7;padding-left:20px;position:relative}
+  .plan li::before{content:'✓';position:absolute;left:0;color:var(--red);font-weight:700}
+  .plan .btn{margin-top:auto;justify-content:center}
+  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+  @media(max-width:900px){.order-grid{grid-template-columns:1fr}}
+  form{background:var(--mist);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .fg{margin-bottom:14px}
+  label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+  input,select,textarea{width:100%;background:#0B0E15;border:1px solid rgba(140,160,190,.3);border-radius:9px;color:var(--ink);font-family:var(--body);font-size:14.5px;padding:10px 12px}
+  textarea{min-height:96px;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(255,59,48,.14)}
+  select option{background:#0B0E15}
+  .form-submit{width:100%;justify-content:center;background:var(--red);color:#fff;border:none;border-radius:10px;padding:15px;font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;cursor:pointer}
+  .form-submit:hover{background:var(--red2)}
+  .secure{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:center;margin-top:12px}
+  #err,#ok{display:none;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:14px}
+  #err{background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.4);color:#FF9E95}
+  #ok{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);color:#7EE0A9}
+  .faq-item{border:1px solid var(--line);border-radius:12px;background:var(--mist);margin-bottom:10px;overflow:hidden}
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:#E2E8F0;font-family:var(--display);font-size:17px;text-transform:none;letter-spacing:0;font-weight:600;padding:17px 20px;cursor:pointer;display:flex;justify-content:space-between;gap:14px;align-items:center}
+  .faq-q .fx{color:var(--red);font-family:var(--mono);font-size:18px}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .28s ease;color:var(--steel);font-size:14.5px;padding:0 20px}
+  .faq-item.open .faq-a{max-height:420px;padding-bottom:18px}
+  .note{border:1px dashed rgba(143,163,191,.35);background:rgba(143,163,191,.06);border-radius:12px;padding:16px 18px;color:#A9B8CE;font-size:13.5px;margin-top:22px}
+  .note b{color:#E8EDF6}
+  footer{padding:44px 0 60px;color:var(--steel);font-size:13.5px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:26px;margin-bottom:26px}
+  @media(max-width:820px){.foot-grid{grid-template-columns:1fr}}
+  footer h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E8EDF6;margin-bottom:12px}
+  footer a{display:block;color:var(--steel);text-decoration:none;padding:3px 0}
+  footer a:hover{color:var(--red)}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-ico">🛡️</span>
+      <span>
+        <span class="brand-name">GARDE<b>-FOU</b> IA</span>
+        <span class="brand-sub">Module gouvernance</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#pourquoi">Pourquoi maintenant</a>
+      <a href="#contenu">Contenu</a>
+      <a href="#offres">Offres</a>
+      <a href="outil-gouvernance.html">Outil gratuit</a>
+      <a href="index.html">Le pack complet</a>
+    </nav>
+    <a class="nav-cta" href="#commander">Commander — 39 €</a>
+    <button id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#pourquoi">Pourquoi maintenant</a>
+    <a href="#contenu">Contenu du module</a>
+    <a href="#offres">Offres</a>
+    <a href="outil-gouvernance.html">Outil de calcul gratuit</a>
+    <a href="#commander" style="color:var(--red)">Commander — 39 €</a>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none">
+  <div class="container hero-grid">
+    <div>
+      <span class="kicker">Module 02 — Gouvernance des agents</span>
+      <h1>Un agent qui boucle ne plante pas.<br>Il <b>continue de payer</b>.</h1>
+      <p class="sub">Coût réel par agent, plafonds de coupure, revue des skills, permissions des serveurs MCP : le volet gouvernance de Garde-fou IA pose les chiffres et les règles que la sécurité classique ne couvre jamais. 8 templates en 3 documents + un outil de calcul qui tourne chez vous.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="outil-gouvernance.html">Calculer mes coûts — gratuit →</a>
+        <a class="btn btn-ghost" href="#contenu">Voir le contenu</a>
+      </div>
+      <div class="trust">
+        <span><b>✓</b> 39 € — module seul</span>
+        <span><b>✓</b> Inclus dans le Pack Entreprise 119 €</span>
+        <span><b>✓</b> Livraison sous 24 h ouvrées</span>
+        <span><b>✓</b> Garantie 14 jours</span>
+      </div>
+    </div>
+    <div class="panel reveal">
+      <div class="panel-bar">
+        <span class="pdot" style="background:#f87171"></span>
+        <span class="pdot" style="background:#fbbf24"></span>
+        <span class="pdot" style="background:#4ade80"></span>
+        <span class="ptitle">Console — agents (sans gouvernance)</span>
+      </div>
+      <div class="prow"><span class="k">Budget mensuel</span><span class="v danger">NON DÉFINI</span></div>
+      <div class="prow"><span class="k">Coût du mois</span><span class="v danger">+312 % vs M-1</span></div>
+      <div class="prow"><span class="k">Agent le plus coûteux</span><span class="v">relance-factures — 68 %</span></div>
+      <div class="prow"><span class="k">Seuil de coupure</span><span class="v danger">AUCUN</span></div>
+      <div class="prow"><span class="k">Serveurs MCP branchés</span><span class="v">11 — dont 4 en écriture</span></div>
+      <div class="prow"><span class="k">Permissions vérifiées</span><span class="v danger">0 / 11</span></div>
+      <div class="prow"><span class="k">Propriétaire désigné</span><span class="v danger">personne</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="pourquoi">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Pourquoi maintenant</span>
+      <h2>Le coût des agents est devenu une ligne budgétaire</h2>
+      <p>Trois signaux convergents de 2026 — et aucune méthode pour les traiter dans une TPE/PME française.</p>
+    </div>
+    <div class="grid3">
+      <div class="card stat reveal">
+        <b>+154 %</b>
+        <span>de croissance sur les compétences d'infrastructure LLM, et +72 % sur le FinOps : les postes de coût IA ne sont plus gérés au doigt mouillé.</span>
+        <em>Source : Malt Tech Trends 2026 (relevé de marché publié en septembre 2026)</em>
+      </div>
+      <div class="card stat reveal">
+        <b>×10</b>
+        <span>l'ordre de grandeur d'une facture qui part en vrille : boucles d'agents, tokens de sortie non maîtrisés, retries silencieux.</span>
+        <em>Signal de marché : discussions techniques publiques sur les factures multipliées par les agents (automne 2026)</em>
+      </div>
+      <div class="card stat reveal">
+        <b>MCP</b>
+        <span>le standard qui donne des outils à vos agents. Chaque serveur branché est une permission accordée — souvent sans que personne ne l'ait validée.</span>
+        <em>Signal de marché : adoption en entreprise documentée, qualité et permissions des serveurs = première inquiétude</em>
+      </div>
+    </div>
+    <div class="note"><b>Ce que le module n'est pas.</b> Ce n'est pas un outil de facturation, ni un tableau de bord temps réel branché sur votre fournisseur : c'est la méthode et les documents à remplir pour décider, alerter et couper — la couche qui manque entre « l'agent fonctionne » et « l'agent est gouverné ». Les chiffres de l'outil sont ceux que vous saisissez.</div>
+  </div>
+</section>
+
+<section id="douleurs">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Trois angles morts</span>
+      <h2>Ce que personne ne surveille</h2>
+    </div>
+    <div class="grid3">
+      <div class="card reveal">
+        <span class="num">Angle mort 01 — Coûts</span>
+        <h3>La facture sans propriétaire</h3>
+        <p>Personne ne sait quel agent consomme quoi, ni à partir de quel montant il faut arrêter. Le budget est découvert à la fin du mois, quand il n'est plus temps d'agir.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">Angle mort 02 — Permissions</span>
+        <h3>Les outils branchés dans l'urgence</h3>
+        <p>Un serveur MCP ajouté un vendredi donne accès en écriture à un CRM, à des emails, à des factures. Aucune revue, aucune authentification révocable, aucun journal des appels.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">Angle mort 03 — Compétences</span>
+        <h3>Les skills qui s'accumulent</h3>
+        <p>Les consignes et compétences utiles sont celles qu'on écrit soi-même… et celles qui deviennent dangereuses sont celles que personne n'a relues depuis six mois. Sans revue, votre agent devient imprévisible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contenu">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Le contenu</span>
+      <h2>8 templates en 3 documents + 1 outil</h2>
+      <p>Des documents à remplir en une réunion, et un outil de calcul qui affiche immédiatement le résultat.</p>
+    </div>
+    <div class="grid2">
+      <div class="card reveal">
+        <span class="num">Document 01 — Coûts (2 templates)</span>
+        <h3>Suivi des coûts &amp; plafonds de coupure</h3>
+        <ul class="list" style="margin-top:14px">
+          <li><span class="tick">✓</span><span><b>T11 — Grille de suivi des coûts</b> : par agent et par modèle, avec les formules de coût par appel et par mois.</span></li>
+          <li><span class="tick">✓</span><span><b>T12 — Règles de coupure</b> : budget mensuel, alerte à 80 %, plafond quotidien, procédure de veille et revue trimestrielle des agents les plus coûteux.</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="num">Document 02 — Permissions (3 templates)</span>
+        <h3>Gouvernance des serveurs MCP</h3>
+        <ul class="list" style="margin-top:14px">
+          <li><span class="tick">✓</span><span><b>T13 — Checklist de sélection</b> : 12 points avant de brancher un serveur MCP (éditeur, authentification, permissions, journalisation, coût, sortie).</span></li>
+          <li><span class="tick">✓</span><span><b>T14 — Registre des serveurs MCP</b> : nom, outils, accès, données touchées, score de risque, décision, responsable, revue.</span></li>
+          <li><span class="tick">✓</span><span><b>T15 — Politique des outils autorisés</b> : ce qu'un agent peut appeler selon son niveau (lecture, écriture, paiement, données personnelles).</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="num">Document 03 — Compétences (3 templates)</span>
+        <h3>Revue des skills et des consignes</h3>
+        <ul class="list" style="margin-top:14px">
+          <li><span class="tick">✓</span><span><b>T16 — Inventaire des skills</b> : nom, but, propriétaire, dernière revue, outils appelés.</span></li>
+          <li><span class="tick">✓</span><span><b>T17 — Grille de revue trimestrielle</b> : garder, fusionner, réécrire ou supprimer — avec le critère de décision.</span></li>
+          <li><span class="tick">✓</span><span><b>T18 — Règles du harnais</b> : ce qui doit rester déterministe autour de l'agent (validation, limites, journal, sortie de secours).</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="num">Outil — 100 % local</span>
+        <h3>Calculateur de coûts &amp; registre MCP</h3>
+        <ul class="list" style="margin-top:14px">
+          <li><span class="tick">✓</span><span>Coût par appel, par mois et par an, pour chaque agent et chaque modèle.</span></li>
+          <li><span class="tick">✓</span><span>Budget, seuil d'alerte à 80 %, plafond quotidien et règles de coupure à imprimer.</span></li>
+          <li><span class="tick">✓</span><span>Registre MCP avec score de risque automatique et export CSV / Markdown.</span></li>
+          <li><span class="tick">✓</span><span>Aucune donnée envoyée : le calcul se fait dans votre navigateur, hors ligne.</span></li>
+        </ul>
+        <div class="ctas" style="margin-top:20px;margin-bottom:0">
+          <a class="btn btn-ghost" href="outil-gouvernance.html">Ouvrir l'outil →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">La méthode</span>
+      <h2>30 minutes, une réunion, puis 12 mois</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="n">01 — MESURER</span>
+        <h3>Chiffrer, dans l'outil</h3>
+        <p>Vous listez vos agents, leurs modèles et leurs volumes. En 30 minutes, vous savez ce que coûte chaque agent, lequel pèse le plus et où se situe votre plafond quotidien.</p>
+      </div>
+      <div class="step reveal">
+        <span class="n">02 — DÉCIDER</span>
+        <h3>Fixer les règles en réunion</h3>
+        <p>Budget mensuel, seuil d'alerte, coupure, permissions autorisées par serveur MCP. Une réunion d'une heure suffit : les documents sont remplis et signés, chacun sait ce qui s'arrête et quand.</p>
+      </div>
+      <div class="step reveal">
+        <span class="n">03 — TENIR</span>
+        <h3>Revue trimestrielle</h3>
+        <p>Les 5 agents les plus coûteux, les serveurs MCP ajoutés, les skills à supprimer. Le registre et la grille de revue fournissent la trame : la gouvernance tient 12 mois, pas une semaine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="offres">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Offres</span>
+      <h2>Trois façons de le prendre</h2>
+      <p>Paiement en ligne sécurisé par carte bancaire (Stripe), ou lien de paiement envoyé sous 24 h ouvrées.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan reveal">
+        <span class="pname">Module seul</span>
+        <div class="pprice">39 <small>€</small></div>
+        <div class="pnote">Pour ceux qui ont déjà la formation</div>
+        <ul>
+          <li>Les 8 templates de gouvernance, en 3 documents .md</li>
+          <li>L'outil de calcul (coûts + registre MCP)</li>
+          <li>Grille de revue trimestrielle</li>
+          <li>Mises à jour pendant 12 mois</li>
+        </ul>
+        <a class="btn btn-ghost" href="#commander" onclick="choisir('Module Gouvernance — 39 €')">Commander — 39 €</a>
+      </div>
+      <div class="plan pop reveal">
+        <span class="ribbon">Le plus complet</span>
+        <span class="pname">Pack Entreprise</span>
+        <div class="pprice">119 <small>€</small></div>
+        <div class="pnote">Formation + 10 templates + module Gouvernance</div>
+        <ul>
+          <li>Tout le pack Garde-fou IA (formation PDF + 10 templates)</li>
+          <li><b>+ le module Gouvernance (8 templates)</b></li>
+          <li>Procédure d'incident version entreprise + kit de sensibilisation équipe</li>
+          <li>Mises à jour pendant 12 mois</li>
+        </ul>
+        <a class="btn btn-red" href="https://buy.stripe.com/5kQ8wR86WdmleTHcCofrW0a" rel="noopener">Payer 119 € par carte</a>
+      </div>
+      <div class="plan reveal">
+        <span class="pname">Audit sur mesure</span>
+        <div class="pprice">490 <small>€</small> <span style="font-size:20px;color:var(--steel)">— 990 €</span></div>
+        <div class="pnote">Quand il faut reprendre l'existant</div>
+        <ul>
+          <li>Relevé réel des agents, modèles, volumes et factures</li>
+          <li>Inventaire des serveurs MCP et des permissions accordées</li>
+          <li>Registre des agents + budget et règles de coupure configurés</li>
+          <li>Restitution écrite et visio de passation</li>
+        </ul>
+        <a class="btn btn-ghost" href="#commander" onclick="choisir('Audit gouvernance des agents — demande de devis')">Demander un devis</a>
+      </div>
+    </div>
+    <div class="note"><b>Le module est inclus dans le Pack Entreprise.</b> Si vous avez déjà le Pack Entreprise, écrivez-le dans le formulaire ci-dessous : les fichiers vous sont renvoyés gratuitement, c'est une mise à jour de votre pack.</div>
+  </div>
+</section>
+
+<section id="commander">
+  <div class="container order-grid">
+    <div class="reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Commande</span>
+      <h2 style="font-size:clamp(24px,3vw,34px);margin-bottom:14px">Recevez le module sous 24 h ouvrées</h2>
+      <p style="color:var(--steel);margin-bottom:20px">Indiquez votre nom, votre email et l'offre souhaitée. Pour l'audit, précisez en une ligne votre contexte : nombre d'agents, outils utilisés, facture mensuelle approximative.</p>
+      <ul class="list">
+        <li><span class="tick">✓</span><span>Réponse personnelle, signée, avec le lien de téléchargement.</span></li>
+        <li><span class="tick">✓</span><span>Fichiers .md + outil HTML : utilisables hors ligne, sans compte.</span></li>
+        <li><span class="tick">✓</span><span>Garantie satisfait ou remboursé 14 jours, sans condition.</span></li>
+        <li><span class="tick">✓</span><span>Facture fournie sur demande.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <form id="cmd-form" onsubmit="return commander(event)" novalidate>
+        <div id="err"></div>
+        <div id="ok"><b>✓ Demande envoyée.</b> Je vous réponds sous 24 h ouvrées avec le lien de paiement ou de téléchargement.</div>
+        <div class="fg">
+          <label for="nom">Votre nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Prénom et nom" required>
+        </div>
+        <div class="fg">
+          <label for="email">Votre email</label>
+          <input type="email" id="email" name="email" placeholder="vous@entreprise.fr" required>
+        </div>
+        <div class="fg">
+          <label for="offre">Offre souhaitée</label>
+          <select id="offre" name="offre">
+            <option value="Module Gouvernance — 39 €">Module Gouvernance — 39 €</option>
+            <option value="Pack Entreprise — 119 € (avec module Gouvernance)">Pack Entreprise — 119 € (module inclus)</option>
+            <option value="Audit gouvernance des agents — demande de devis">Audit gouvernance des agents — 490 à 990 €</option>
+            <option value="J'ai déjà le Pack Entreprise — mise à jour du module">J'ai déjà le Pack Entreprise — mise à jour gratuite</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="contexte">Contexte (optionnel, utile pour l'audit)</label>
+          <textarea id="contexte" name="contexte" placeholder="ex. 6 agents, facture IA ~400 €/mois, serveurs MCP : Notion, HubSpot, Google Drive"></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Envoyer ma demande</button>
+        <p class="secure">🔒 Aucune donnée bancaire ici. Paiement Stripe à part, ou lien de paiement par email.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container" style="max-width:860px">
+    <div class="sect-head reveal">
+      <span class="kicker" style="margin-bottom:14px;display:inline-block">Questions</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-q">Quelle différence avec le pack Garde-fou IA à 59 € ?<span class="fx">+</span></button>
+        <div class="faq-a">Le pack traite la sécurité des agents : accès, données interdites, validation humaine, journalisation, incident. Le module Gouvernance traite trois sujets distincts que la sécurité ne couvre pas : <b>combien</b> coûtent vos agents (et quand couper), <b>quels outils</b> ils peuvent appeler (serveurs MCP, permissions), et <b>quelles compétences</b> survivent à la revue trimestrielle.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Est-ce inclus dans le Pack Entreprise à 119 € ?<span class="fx">+</span></button>
+        <div class="faq-a">Oui : le module est inclus dans le Pack Entreprise (119 €), avec la formation, les 10 templates de sécurité, la procédure d'incident version entreprise et le kit de sensibilisation équipe. Si vous avez acheté le Pack Entreprise avant l'ajout du module, écrivez-nous : la mise à jour est gratuite.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">L'outil de calcul envoie-t-il mes chiffres quelque part ?<span class="fx">+</span></button>
+        <div class="faq-a">Non. Le calcul se fait intégralement dans votre navigateur, sans requête réseau, sans compte. Vos volumes, vos tarifs et vos serveurs restent sur votre poste — vous pouvez même l'utiliser hors ligne. Les exports CSV / Markdown sont générés localement.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Mes chiffres de coûts seront-ils exacts ?<span class="fx">+</span></button>
+        <div class="faq-a">Le calculateur compte la facturation des tokens (entrée et sortie) selon les tarifs que vous saisissez. Les coûts réels incluent aussi le cache, les tentatives répétées, les appels d'outils internes, les embeddings et la recherche : comptez une marge de 20 à 40 % avant de présenter un budget à votre direction. La valeur du module n'est pas la précision au centime, c'est de fixer un propriétaire, un seuil d'alerte et une règle de coupure.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Faut-il être développeur ?<span class="fx">+</span></button>
+        <div class="faq-a">Non. Les templates sont des documents à remplir (Markdown, ouvrables dans n'importe quel éditeur de texte) et l'outil est une page web. Un profil technique peut vous aider à relever les volumes réellement consommés, mais les décisions — budget, permissions, revue — sont des décisions de direction.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Y a-t-il une garantie ?<span class="fx">+</span></button>
+        <div class="faq-a">Oui : satisfait ou remboursé 14 jours, sans condition. Si le module ne vous apporte pas une méthode utilisable pour gouverner vos agents, écrivez-nous sous 14 jours et vous êtes remboursé.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:14px">
+          <span class="brand-ico">🛡️</span>
+          <span>
+            <span class="brand-name">GARDE<b>-FOU</b> IA</span>
+            <span class="brand-sub">Module gouvernance</span>
+          </span>
+        </a>
+        <p style="color:var(--steel)">Le volet gouvernance du pack Garde-fou IA : coûts des agents, permissions des serveurs MCP, revue des compétences. Des documents à remplir, pas de la théorie.</p>
+      </div>
+      <div>
+        <h4>Le module</h4>
+        <a href="#pourquoi">Pourquoi maintenant</a>
+        <a href="#contenu">Contenu</a>
+        <a href="#methode">Méthode</a>
+        <a href="outil-gouvernance.html">Outil de calcul</a>
+      </div>
+      <div>
+        <h4>Garde-fou IA</h4>
+        <a href="index.html">Le pack complet</a>
+        <a href="outil.html">Audit sécurité /100</a>
+        <a href="#offres">Offres et tarifs</a>
+        <a href="#commander">Commander</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);padding-top:18px">
+      <span>© 2026 Garde-fou IA — Tous droits réservés</span>
+      <span>Fait avec rigueur, en France 🇫🇷</span>
+    </div>
+    <div style="margin-top:.6rem;font-size:.85rem"><a href="cgv.html" style="display:inline">CGV</a> · <a href="mentions-legales.html" style="display:inline">Mentions légales</a></div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Commande : EmailJS (mécanisme réel du site) ---------- */
+var EM_SITE = 'Garde-fou IA — Module Gouvernance';
+function choisir(label) {
+  var s = document.getElementById('offre');
+  if (s) s.value = label;
+}
+function commander(event) {
+  if (event && event.preventDefault) event.preventDefault();
+  var nom = document.getElementById('nom').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var offre = document.getElementById('offre').value;
+  var contexte = document.getElementById('contexte').value.trim();
+  var err = document.getElementById('err');
+  var ok = document.getElementById('ok');
+  err.style.display = 'none'; ok.style.display = 'none';
+  if (!nom || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = 'Merci de renseigner votre nom et un email valide.';
+    err.style.display = 'block';
+    return false;
+  }
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Envoi…';
+  var params = { site: EM_SITE, name: nom, email: email, question: 'Commande : ' + offre + (contexte ? ' — ' + contexte : '') };
+  var fini = function (succes) {
+    btn.disabled = false; btn.textContent = 'Envoyer ma demande';
+    if (succes) { ok.style.display = 'block'; document.getElementById('cmd-form').reset(); }
+    else { err.textContent = 'L\'envoi n\'a pas pu aboutir. Écrivez directement à l\'adresse de contact indiquée sur la page mentions légales : votre demande sera traitée de la même façon.'; err.style.display = 'block'; }
+  };
+  if (window.emailjs) {
+    try { emailjs.send('service_cy1ytdb', 'template_xpo58cv', params).then(function () { fini(true); }, function () { fini(false); }); }
+    catch (e) { fini(false); }
+  } else {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload = function () {
+      try { emailjs.init({ publicKey: '8Pui4ZEqxW2jRVF7h' }); } catch (e) {}
+      try { emailjs.send('service_cy1ytdb', 'template_xpo58cv', params).then(function () { fini(true); }, function () { fini(false); }); }
+      catch (e) { fini(false); }
+    };
+    s.onerror = function () { fini(false); };
+    document.head.appendChild(s);
+  }
+  return false;
+}
+
+/* ---------- burger ---------- */
+document.getElementById('burger').addEventListener('click', function () {
+  var m = document.getElementById('mobile-menu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+});
+
+/* ---------- FAQ ---------- */
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  item.querySelector('.faq-q').addEventListener('click', function () {
+    var open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+    if (!open) item.classList.add('open');
+  });
+});
+
+/* ---------- reveal ---------- */
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+<script src="chatbot-config.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>

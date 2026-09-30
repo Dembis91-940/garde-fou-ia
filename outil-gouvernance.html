@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outil Gouvernance des agents — coûts, budget, registre MCP (100 % local)</title>
+<meta name="description" content="Calculateur gratuit : coût réel de vos agents IA (par modèle, par appel, par mois), plafonds de coupure et registre des serveurs MCP avec score de risque. Tout se calcule dans votre navigateur, aucune donnée n'est envoyée.">
+<meta name="theme-color" content="#0A0C12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0C12'/%3E%3Cpath d='M32 10 L52 18 V34 C52 46 43 53 32 56 C21 53 12 46 12 34 V18 Z' fill='none' stroke='%23FF3B30' stroke-width='4'/%3E%3Ctext x='32' y='43' font-family='Arial Black' font-size='20' font-weight='900' fill='%23ffffff' text-anchor='middle'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Calculateur de coûts d'agents IA et registre des serveurs MCP — Garde-fou IA",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Navigateur web (fonctionne hors ligne)",
+  "description": "Outil gratuit et 100 % local : coût par appel, par mois et par an de chaque agent IA, budget, seuil d'alerte, plafonds de coupure, et registre des serveurs MCP avec score de risque et export CSV/Markdown.",
+  "featureList": [
+    "Coût par appel, par mois et par an par agent et par modèle",
+    "Budget mensuel, seuil d'alerte à 80 %, plafond quotidien, règles de coupure imprimables",
+    "Registre des serveurs MCP avec score de risque automatique",
+    "Export CSV (Excel) et Markdown, aucune donnée transmise"
+  ],
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "isPartOf": { "@type": "Product", "name": "Garde-fou IA — Module Gouvernance des agents" }
+}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background-color:#0A0C12;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:34px 34px;color:#E8EDF6;min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
+  h1,h2,h3,.kicker,.logo{font-family:'Rajdhani',sans-serif;letter-spacing:-.015em;color:#E8EDF6}
+  ::selection{background:#FF3B3040;color:#E8EDF6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  a{color:#FF6B60}
+  header{position:sticky;top:0;z-index:50;padding:14px 0;border-bottom:1px solid rgba(255,120,110,.14);background:rgba(14,18,28,.72);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+  header .wrap{display:flex;align-items:center;gap:14px}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:16px;color:#fff;text-decoration:none}
+  .logo .mark{width:38px;height:38px;border-radius:8px;background:#12151F;border:1px solid #5C6F8C;display:flex;align-items:center;justify-content:center;font-size:16px;color:#FF3B30}
+  .logo b{color:#FF3B30}
+  .logo small{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;color:#8FA3BF;text-transform:uppercase}
+  header .links{margin-left:auto;display:flex;gap:16px;align-items:center}
+  header .links a{color:#8FA3BF;text-decoration:none;font-weight:600;font-size:13px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+  header .links a:hover{color:#FF3B30}
+  .kicker{margin-top:40px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FF3B30;background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.45);padding:7px 14px;border-radius:8px}
+  h1{font-size:clamp(30px,4.4vw,44px);font-weight:700;line-height:1.08;text-transform:uppercase;margin:16px 0 12px;max-width:860px}
+  h1 em{color:#FF3B30;font-style:normal}
+  .lead{color:#9FB0C9;max-width:760px;margin-bottom:10px}
+  .privacy{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7EE0A9;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.3);border-radius:999px;padding:7px 14px;margin:14px 0 30px}
+  section{padding:34px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .sect-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;text-transform:uppercase}
+  h2 span{font-family:'JetBrains Mono',monospace;font-size:12px;color:#FF3B30;letter-spacing:.16em;display:block;margin-bottom:4px}
+  .hint{color:#8FA3BF;font-size:13.5px;margin-bottom:20px;max-width:820px}
+  .card{background:linear-gradient(180deg,#12151F,#0E1119);border:1px solid rgba(140,160,190,.18);border-radius:14px;padding:20px}
+  .card + .card{margin-top:16px}
+  .grid2{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;align-items:start}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  label{display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FA3BF;margin-bottom:6px}
+  input[type=text],input[type=number],select{width:100%;background:#0B0E15;border:1px solid rgba(140,160,190,.28);border-radius:9px;color:#E8EDF6;font-family:'Inter',sans-serif;font-size:14px;padding:9px 11px}
+  input:focus,select:focus{outline:none;border-color:#FF3B30;box-shadow:0 0 0 3px rgba(255,59,48,.15)}
+  select option{background:#0B0E15}
+  .row-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  button{cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13.5px;padding:10px 16px;border-radius:9px;border:1px solid rgba(255,120,110,.4);background:rgba(255,59,48,.12);color:#FFD9D5}
+  button:hover{background:rgba(255,59,48,.22)}
+  button.solid{background:#FF3B30;border-color:#FF3B30;color:#fff}
+  button.solid:hover{background:#e03227}
+  button.ghost{background:transparent;border-color:rgba(140,160,190,.35);color:#CBD6E7}
+  button.mini{padding:6px 10px;font-size:12px;border-radius:7px}
+  table{width:100%;border-collapse:collapse;margin-top:6px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px;vertical-align:middle}
+  th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8FA3BF;font-weight:600}
+  td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace}
+  .totaux{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0}
+  .kpi{flex:1 1 165px;background:#0B0E15;border:1px solid rgba(140,160,190,.2);border-radius:12px;padding:14px}
+  .kpi b{display:block;font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1.15}
+  .kpi span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8FA3BF}
+  .kpi.red b{color:#FF6B60}
+  .kpi.green b{color:#4ADE80}
+  .kpi.amber b{color:#FBBF24}
+  .bars{margin-top:12px}
+  .bar{display:grid;grid-template-columns:170px 1fr 92px;gap:10px;align-items:center;margin-bottom:7px;font-size:13px}
+  .bar .track{height:9px;background:#0B0E15;border:1px solid rgba(140,160,190,.2);border-radius:999px;overflow:hidden}
+  .bar .fill{height:100%;background:linear-gradient(90deg,#FF3B30,#FBBF24)}
+  .bar .val{font-family:'JetBrains Mono',monospace;text-align:right;color:#CBD6E7}
+  .alerts{list-style:none;margin-top:14px;display:grid;gap:9px}
+  .alerts li{background:#0B0E15;border-left:3px solid #FF3B30;border-radius:8px;padding:10px 13px;font-size:13.5px;color:#DCE4F0}
+  .alerts li.ok{border-left-color:#34D399}
+  .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+  .b-ok{background:rgba(52,211,153,.13);color:#7EE0A9;border:1px solid rgba(52,211,153,.35)}
+  .b-moyen{background:rgba(251,191,36,.13);color:#FCD34D;border:1px solid rgba(251,191,36,.35)}
+  .b-eleve{background:rgba(255,59,48,.15);color:#FF8A80;border:1px solid rgba(255,59,48,.45)}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:8px 0}
+  .checks label{display:flex;gap:9px;align-items:center;text-transform:none;letter-spacing:0;font-family:'Inter',sans-serif;font-size:13px;color:#CBD6E7;margin:0;cursor:pointer}
+  .checks input{width:16px;height:16px;accent-color:#FF3B30}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+  .regles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+  .regle{background:#0B0E15;border:1px solid rgba(140,160,190,.2);border-radius:12px;padding:16px}
+  .regle b{display:block;font-family:'Rajdhani',sans-serif;font-size:17px;text-transform:uppercase;color:#fff;margin-bottom:6px}
+  .regle p{font-size:13.5px;color:#9FB0C9}
+  .note{background:rgba(143,163,191,.07);border:1px dashed rgba(143,163,191,.35);border-radius:12px;padding:14px 16px;font-size:13px;color:#A9B8CE;margin-top:18px}
+  .note b{color:#E8EDF6}
+  footer{border-top:1px solid rgba(255,255,255,.08);margin-top:30px;padding:26px 0 40px;color:#8FA3BF;font-size:13px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  @media print{
+    body{background:#fff;color:#111}
+    header,.no-print,footer{display:none!important}
+    .card,.kpi,.regle,.alerts li{border-color:#bbb;background:#fff;color:#111}
+    h1,h2,.kpi b,.regle b{color:#111}
+  }
+</style>
+</head>
+<body>
+<header class="no-print">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <span class="mark">🛡</span>
+      <span>GARDE<b>-FOU</b> IA<small>Gouvernance des agents</small></span>
+    </a>
+    <div class="links">
+      <a href="gouvernance-agents.html">Le module</a>
+      <a href="outil.html">Audit sécurité</a>
+      <a href="index.html#commander">Commander</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="kicker">Outil gratuit — pour dirigeants, DSI et chefs de projet</span>
+  <h1>Combien vous coûtent <em>réellement</em> vos agents IA ?</h1>
+  <p class="lead">Deux outils dans une page : le <b>coût réel par agent</b> (tokens, appels, budget, plafonds de coupure) et le <b>registre des serveurs MCP</b> avec score de risque. Saisissez vos chiffres, exportez le tableau pour votre revue de direction.</p>
+  <div class="privacy">🔒 100 % local — aucune donnée ne quitte votre navigateur, aucun compte, aucune requête réseau</div>
+
+  <!-- ===================== 1. COÛTS ===================== -->
+  <section id="couts">
+    <div class="sect-head"><h2><span>Outil 1 — FinOps agents</span>Coût réel &amp; plafonds de coupure</h2></div>
+    <p class="hint">Renseignez vos tarifs (en $ par million de tokens, tels que sur la page tarifaire de votre fournisseur) et le volume de vos agents. Les valeurs pré-remplies sont des ordres de grandeur à ajuster : les prix des modèles changent souvent.</p>
+
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <div class="fgrid">
+            <div>
+              <label for="jours">Jours d'activité / mois</label>
+              <input type="number" id="jours" value="30" min="1" max="31">
+            </div>
+            <div>
+              <label for="taux">Taux de conversion $ → €</label>
+              <input type="number" id="taux" step="0.01" value="1">
+            </div>
+            <div>
+              <label for="budget">Budget mensuel agents (€)</label>
+              <input type="number" id="budget" value="300" min="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                <th>Agent</th>
+                <th>Modèle (tarifs $/M tokens)</th>
+                <th class="num">Appels/j</th>
+                <th class="num">Tokens in</th>
+                <th class="num">Tokens out</th>
+                <th class="num">Coût/appel</th>
+                <th class="num">Coût/mois</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="lignes"></tbody>
+          </table>
+          <div class="row-actions no-print">
+            <button class="ghost" id="add">+ Ajouter un agent</button>
+            <button class="ghost" id="exemple">Charger un exemple</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="position:sticky;top:80px">
+          <div class="kpi red"><b id="k-total">—</b><span>Coût mensuel total</span></div>
+          <div class="totaux" style="margin-top:8px">
+            <div class="kpi"><b id="k-annuel">—</b><span>Sur 12 mois</span></div>
+          </div>
+          <div class="totaux">
+            <div class="kpi amber"><b id="k-jour">—</b><span>Plafond quotidien</span></div>
+            <div class="kpi"><b id="k-80">—</b><span>Seuil d'alerte (80 %)</span></div>
+          </div>
+          <div class="bars" id="bars"></div>
+          <ul class="alerts" id="alertes"></ul>
+          <div class="row-actions no-print">
+            <button class="solid" id="dl-csv">⬇ CSV (Excel)</button>
+            <button class="ghost" id="dl-md">⬇ Markdown</button>
+            <button class="ghost" onclick="window.print()">🖨 Imprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>Ce que le calculateur compte — et ce qu'il ne compte pas.</b> Facturation des tokens uniquement (entrée + sortie, hors cache). Les coûts réels ajoutent souvent : cache, tentatives répétées, appels d'outils internes, embeddings et stockage vectoriel, recherche web, OCR, voix. Ajoutez une marge de 20 à 40 % avant de la présenter à votre direction.</div>
+  </section>
+
+  <!-- ===================== 2. REGISTRE MCP ===================== -->
+  <section id="mcp">
+    <div class="sect-head"><h2><span>Outil 2 — Gouvernance MCP</span>Registre des serveurs MCP &amp; outils autorisés</h2></div>
+    <p class="hint">Un serveur MCP donne à vos agents des outils : lire, écrire, supprimer, payer, envoyer. Avant de le brancher, notez ce qu'il peut faire : le score de risque est calculé automatiquement, et le registre exporté constitue votre pièce de gouvernance (revue trimestrielle).</p>
+
+    <div class="card">
+      <div class="fgrid">
+        <div><label for="m-nom">Nom du serveur MCP</label><input type="text" id="m-nom" placeholder="ex. Serveur Jira interne"></div>
+        <div><label for="m-editeur">Éditeur / provenance</label>
+          <select id="m-editeur">
+            <option value="officiel">Éditeur officiel du logiciel</option>
+            <option value="interne">Développé en interne</option>
+            <option value="communautaire">Communautaire</option>
+            <option value="inconnu">Inconnu / non maintenu</option>
+          </select>
+        </div>
+        <div><label for="m-outils">Outils exposés</label><input type="text" id="m-outils" placeholder="ex. lister tickets, créer ticket"></div>
+        <div><label for="m-auth">Authentification</label>
+          <select id="m-auth">
+            <option value="oauth">OAuth (révocable)</option>
+            <option value="cle">Clé statique</option>
+            <option value="aucune">Aucune</option>
+          </select>
+        </div>
+        <div><label for="m-reseau">Exposition réseau</label>
+          <select id="m-reseau">
+            <option value="interne">Réseau interne uniquement</option>
+            <option value="public">Exposé sur Internet</option>
+          </select>
+        </div>
+        <div><label for="m-zone">Zone d'hébergement</label>
+          <select id="m-zone">
+            <option value="ue">Union européenne</option>
+            <option value="horsUE">Hors UE (transfert)</option>
+          </select>
+        </div>
+        <div><label for="m-revue">Prochaine revue</label><input type="text" id="m-revue" placeholder="ex. T1 2027"></div>
+        <div><label for="m-resp">Responsable désigné</label><input type="text" id="m-resp" placeholder="ex. N. Diallo (DSI)"></div>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="m-ecriture"> Peut modifier des données</label>
+        <label><input type="checkbox" id="m-suppression"> Peut supprimer des données</label>
+        <label><input type="checkbox" id="m-perso"> Accède à des données personnelles</label>
+        <label><input type="checkbox" id="m-secrets"> Accède à des secrets / identifiants</label>
+        <label><input type="checkbox" id="m-journalise" checked> Les appels d'outils sont journalisés</label>
+        <label><input type="checkbox" id="m-plafond" checked> Usage facturé sous plafond</label>
+      </div>
+      <div class="row-actions no-print">
+        <button class="solid" id="m-add">+ Enregistrer ce serveur</button>
+        <button class="ghost" id="m-demo">Charger deux exemples</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Serveur</th><th>Accès</th><th>Auth</th><th class="num">Score</th><th>Niveau</th><th>Décision</th><th></th></tr>
+        </thead>
+        <tbody id="m-lignes"></tbody>
+      </table>
+      <div class="row-actions no-print">
+        <button class="solid" id="m-csv">⬇ Registre CSV</button>
+        <button class="ghost" id="m-md">⬇ Registre Markdown</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. RÈGLES ===================== -->
+  <section id="regles">
+    <div class="sect-head"><h2><span>À imprimer</span>Les 4 règles de coupure à afficher sur votre console d'agents</h2></div>
+    <div class="regles" id="regles-grid"></div>
+    <div class="note"><b>Pourquoi une règle de coupure ?</b> Un agent qui boucle ne se contente pas d'échouer : il continue de payer. Le suivi du coût ne sert à rien s'il n'existe aucun seuil au-delà duquel l'agent s'arrête automatiquement. Ces quatre règles se paramètrent en 30 minutes dans la plupart des plateformes d'orchestration.</div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2 style="font-size:22px">Est-ce suffisant ?</h2>
+      <p class="hint" style="margin:8px 0 14px">Cet outil couvre le calcul et le registre. Le <b>module Gouvernance des agents</b> ajoute les documents qui rendent la gouvernance tenable sur 12 mois : grille de suivi des coûts, registre MCP, politique « quels outils un agent peut toucher », revue des skills et comptes rendus de revue trimestrielle.</p>
+      <div class="row-actions no-print">
+        <a href="gouvernance-agents.html"><button class="solid">Voir le module — 39 € (inclus dans le Pack Entreprise 119 €)</button></a>
+        <a href="index.html#commander"><button class="ghost">Commander par carte bancaire</button></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Garde-fou IA — module Gouvernance des agents. Outil de calcul indicatif : il ne remplace ni la facturation de votre fournisseur, ni un audit sur mesure. Aucune donnée saisie n'est transmise.</p>
+  <p style="margin-top:8px"><a href="index.html">Accueil</a> · <a href="gouvernance-agents.html">Module Gouvernance</a> · <a href="outil.html">Audit sécurité /100</a> · <a href="cgv.html">CGV</a> · <a href="mentions-legales.html">Mentions légales</a></p>
+</footer>
+
+<script src="gouvernance-calc.js"></script>
+<script>
+(function () {
+  'use strict';
+  var G = window.GOVCALC;
+  var CLE_COUTS = 'gf_gouv_couts_v1';
+  var CLE_MCP = 'gf_gouv_mcp_v1';
+
+  /* ---------- état ---------- */
+  var MODELES = G.MODELES_DEFAUT;
+  var agents = [];
+  var serveurs = [];
+  var opts = { joursMois: 30, taux: 1, budgetMensuel: 300 };
+
+  function lireStockage(cle, defaut) {
+    try {
+      var raw = localStorage.getItem(cle);
+      if (!raw) return defaut;
+      var v = JSON.parse(raw);
+      return Array.isArray(v) ? v : defaut;
+    } catch (e) { return defaut; }
+  }
+  function ecrire(cle, val) {
+    try { localStorage.setItem(cle, JSON.stringify(val)); } catch (e) {}
+  }
+
+  agents = lireStockage(CLE_COUTS, []);
+  serveurs = lireStockage(CLE_MCP, []);
+  if (!agents.length) agents = exempleAgents();
+  var o = lireStockage('gf_gouv_opts_v1', null);
+  if (o && typeof o === 'object' && !Array.isArray(o)) opts = o;
+
+  function exempleAgents() {
+    return [
+      { nom: 'Relance de factures', modele: 'intermediaire', appelsJour: 40, tokensIn: 2600, tokensOut: 400, prixIn: 2.5, prixOut: 10 },
+      { nom: 'Veille quotidienne', modele: 'petit', appelsJour: 25, tokensIn: 9000, tokensOut: 1500, prixIn: 0.2, prixOut: 0.8 },
+      { nom: 'Assistant direction', modele: 'raisonnement', appelsJour: 12, tokensIn: 5200, tokensOut: 1200, prixIn: 10, prixOut: 40 }
+    ];
+  }
+
+  /* ---------- rendu coûts ---------- */
+  function ligneHTML(a, i) {
+    var options = MODELES.map(function (m) {
+      return '<option value="' + m.id + '"' + (a.modele === m.id ? ' selected' : '') + '>' + m.nom + ' — ' + G.fmt(m.prixIn) + ' / ' + G.fmt(m.prixOut) + ' $</option>';
+    }).join('');
+    return '<tr>' +
+      '<td><input type="text" data-i="' + i + '" data-c="nom" value="' + esc(a.nom) + '" placeholder="Nom de l\'agent"></td>' +
+      '<td><select data-i="' + i + '" data-c="modele">' + options + '</select></td>' +
+      '<td class="num"><input type="number" data-i="' + i + '" data-c="appelsJour" value="' + num(a.appelsJour) + '" min="0" style="width:78px"></td>' +
+      '<td class="num"><input type="number" data-i="' + i + '" data-c="tokensIn" value="' + num(a.tokensIn) + '" min="0" style="width:92px"></td>' +
+      '<td class="num"><input type="number" data-i="' + i + '" data-c="tokensOut" value="' + num(a.tokensOut) + '" min="0" style="width:92px"></td>' +
+      '<td class="num" id="cp-' + i + '">' + G.fmt(G.coutParAppel(a.tokensIn, a.tokensOut, a.prixIn, a.prixOut)) + ' $</td>' +
+      '<td class="num" id="cm-' + i + '">—</td>' +
+      '<td class="no-print"><button class="mini ghost" data-del="' + i + '">✕</button></td>' +
+      '</tr>';
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+  function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
+
+  function appliquerModele(a) {
+    var m = MODELES.filter(function (x) { return x.id === a.modele; })[0] || MODELES[1];
+    a.prixIn = m.prixIn; a.prixOut = m.prixOut;
+    return a;
+  }
+
+  function renderTable() {
+    document.getElementById('lignes').innerHTML = agents.map(ligneHTML).join('');
+    renderDerives();
+  }
+
+  /* Recalcule uniquement les valeurs dérivées (pas de re-rendu du tableau :
+     sinon on perd le focus pendant la saisie). */
+  function renderDerives() {
+    agents.forEach(function (a, i) {
+      var cp = document.getElementById('cp-' + i);
+      if (cp) cp.textContent = G.fmt(G.coutParAppel(a.tokensIn, a.tokensOut, a.prixIn, a.prixOut)) + ' $';
+      var cm = document.getElementById('cm-' + i);
+      if (cm) cm.textContent = G.fmt(G.coutMensuelAgent(a, opts)) + ' €';
+    });
+
+    var analyse = G.analysePortefeuille(agents, opts);
+
+    document.getElementById('k-total').textContent = G.fmt(analyse.totalMensuel) + ' €';
+    document.getElementById('k-annuel').textContent = G.fmt(analyse.totalAnnuel) + ' €';
+    document.getElementById('k-jour').textContent = G.fmt(analyse.plafondJour) + ' €';
+    document.getElementById('k-80').textContent = G.fmt(analyse.seuilAlerte80) + ' €';
+
+    var max = analyse.lignes.length ? analyse.lignes[0].coutMensuel : 0;
+    document.getElementById('bars').innerHTML = analyse.lignes.map(function (l) {
+      var w = max > 0 ? (l.coutMensuel / max * 100) : 0;
+      return '<div class="bar"><span>' + esc(l.nom) + '</span><span class="track"><span class="fill" style="width:' + w.toFixed(1) + '%"></span></span><span class="val">' + G.fmt(l.coutMensuel) + ' €</span></div>';
+    }).join('');
+
+    document.getElementById('alertes').innerHTML = analyse.alertes.map(function (t) {
+      return '<li class="' + (analyse.depassement ? '' : 'ok') + '">' + esc(t) + '</li>';
+    }).join('');
+
+    renderRegles(analyse);
+    ecrire(CLE_COUTS, agents);
+    ecrire('gf_gouv_opts_v1', opts);
+  }
+
+  function renderRegles(analyse) {
+    var r = analyse;
+    var regles = [
+      { t: 'Règle 1 — Plafond par agent, par jour', d: 'Chaque agent reçoit un budget quotidien (' + G.fmt(r.plafondJour) + ' € pour l\'ensemble, à répartir par agent). Au-delà : alerte au responsable, puis suspension automatique.' },
+      { t: 'Règle 2 — Coupure à 100 % du budget', d: 'Budget mensuel atteint (' + G.fmt(r.budgetMensuel) + ' €) → les agents non critiques passent en veille jusqu\'à la revue. Personne ne « découvre » la facture en fin de mois.' },
+      { t: 'Règle 3 — Alerte à 80 %', d: 'À ' + G.fmt(r.seuilAlerte80) + ' €, le responsable d\'exploitation reçoit une alerte et identifie l\'agent responsable dans les 24 h.' },
+      { t: 'Règle 4 — Revue des 5 plus coûteux', d: 'Chaque trimestre : les 5 agents (ou les 5 workflows) les plus coûteux sont revus. Trop de tokens de sortie, boucles, prompts inutiles : c\'est là que se trouve l\'argent.' }
+    ];
+    document.getElementById('regles-grid').innerHTML = regles.map(function (x) {
+      return '<div class="regle"><b>' + esc(x.t) + '</b><p>' + esc(x.d) + '</p></div>';
+    }).join('');
+  }
+
+  /* ---------- interactions coûts ---------- */
+  document.getElementById('lignes').addEventListener('input', function (e) {
+    var t = e.target, i = parseInt(t.getAttribute('data-i'), 10), c = t.getAttribute('data-c');
+    if (isNaN(i) || !c || c === 'modele') return;
+    agents[i][c] = (c === 'nom') ? t.value : num(t.value);
+    renderDerives();
+  });
+  document.getElementById('lignes').addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.getAttribute('data-c') !== 'modele') return;
+    var i = parseInt(t.getAttribute('data-i'), 10);
+    agents[i].modele = t.value;
+    appliquerModele(agents[i]);
+    renderDerives();
+  });
+  document.getElementById('lignes').addEventListener('click', function (e) {
+    var d = e.target.getAttribute && e.target.getAttribute('data-del');
+    if (d === null) return;
+    agents.splice(parseInt(d, 10), 1);
+    renderTable();
+  });
+  document.getElementById('add').addEventListener('click', function () {
+    agents.push({ nom: 'Nouvel agent', modele: 'intermediaire', appelsJour: 20, tokensIn: 3000, tokensOut: 600, prixIn: 2.5, prixOut: 10 });
+    renderTable();
+  });
+  document.getElementById('exemple').addEventListener('click', function () {
+    agents = exempleAgents();
+    renderTable();
+  });
+  ['jours', 'taux', 'budget'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', function () {
+      opts = { joursMois: num(document.getElementById('jours').value) || 30, taux: num(document.getElementById('taux').value) || 1, budgetMensuel: num(document.getElementById('budget').value) };
+      renderDerives();
+    });
+  });
+
+  /* ---------- exports coûts ---------- */
+  function telecharger(nom, contenu, type) {
+    var blob = new Blob([contenu], { type: type || 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = nom; document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+  document.getElementById('dl-csv').addEventListener('click', function () {
+    var analyse = G.analysePortefeuille(agents, opts);
+    var l = [['Agent', 'Modèle', 'Appels/jour', 'Appels/mois', 'Tokens entrée/appel', 'Tokens sortie/appel', 'Prix entrée ($/M)', 'Prix sortie ($/M)', 'Coût/appel ($)', 'Coût mensuel (€)', 'Coût annuel (€)', 'Part du budget (%)', 'Statut']];
+    agents.forEach(function (a) {
+      var ligne = analyse.lignes.filter(function (x) { return x.nom === a.nom; })[0] || { coutMensuel: 0, coutAnnuel: 0, partBudgetPct: 0, statut: 'ok', appelsMois: 0 };
+      l.push([a.nom, (MODELES.filter(function (m) { return m.id === a.modele; })[0] || {}).nom || a.modele, num(a.appelsJour), ligne.appelsMois,
+        num(a.tokensIn), num(a.tokensOut), num(a.prixIn), num(a.prixOut),
+        G.coutParAppel(a.tokensIn, a.tokensOut, a.prixIn, a.prixOut).toFixed(4),
+        G.fmt(ligne.coutMensuel), G.fmt(ligne.coutAnnuel), G.fmt(ligne.partBudgetPct), ligne.statut]);
+    });
+    l.push(['TOTAL', '', '', '', '', '', '', '', '', G.fmt(analyse.totalMensuel), G.fmt(analyse.totalAnnuel), G.fmt(analyse.partBudgetPct), analyse.depassement ? 'budget dépassé' : 'dans le budget']);
+    telecharger('garde-fou-ia-couts-agents.csv', G.versCSV(l), 'text/csv;charset=utf-8');
+  });
+  document.getElementById('dl-md').addEventListener('click', function () {
+    var md = '# Suivi des coûts des agents — ' + new Date().toLocaleDateString('fr-FR') + '\n\n' +
+      G.versMarkdownCouts(G.analysePortefeuille(agents, opts)) + '\n\n## Alertes\n' +
+      G.analysePortefeuille(agents, opts).alertes.map(function (a) { return '- ' + a; }).join('\n') + '\n';
+    telecharger('garde-fou-ia-couts-agents.md', md, 'text/markdown;charset=utf-8');
+  });
+
+  /* ---------- registre MCP ---------- */
+  function lireForm() {
+    return {
+      nom: document.getElementById('m-nom').value.trim(),
+      editeur: document.getElementById('m-editeur').value,
+      outils: document.getElementById('m-outils').value.trim(),
+      auth: document.getElementById('m-auth').value,
+      reseau: document.getElementById('m-reseau').value,
+      zone: document.getElementById('m-zone').value,
+      revue: document.getElementById('m-revue').value.trim(),
+      responsable: document.getElementById('m-resp').value.trim(),
+      ecriture: document.getElementById('m-ecriture').checked,
+      suppression: document.getElementById('m-suppression').checked,
+      donneesPerso: document.getElementById('m-perso').checked,
+      secrets: document.getElementById('m-secrets').checked,
+      journalise: document.getElementById('m-journalise').checked,
+      plafond: document.getElementById('m-plafond').checked
+    };
+  }
+
+  function renderMCP() {
+    document.getElementById('m-lignes').innerHTML = serveurs.map(function (s, i) {
+      var r = G.scoreRisqueMCP(s);
+      var acces = [s.ecriture ? 'écriture' : 'lecture', s.suppression ? 'suppression' : '', s.donneesPerso ? 'données perso' : '', s.secrets ? 'secrets' : ''].filter(Boolean).join(', ');
+      var cls = r.niveau === 'élevé' ? 'b-eleve' : (r.niveau === 'moyen' ? 'b-moyen' : 'b-ok');
+      return '<tr>' +
+        '<td><b style="color:#fff">' + esc(s.nom) + '</b><br><span style="color:#8FA3BF;font-size:12px">' + esc(s.editeur) + (s.outils ? ' — ' + esc(s.outils) : '') + '</span></td>' +
+        '<td>' + esc(acces) + '</td>' +
+        '<td>' + esc(s.auth) + '</td>' +
+        '<td class="num">' + r.score + '</td>' +
+        '<td><span class="badge ' + cls + '">' + esc(r.niveau) + '</span></td>' +
+        '<td style="font-size:12.5px;color:#9FB0C9">' + esc(r.decision) + '</td>' +
+        '<td class="no-print"><button class="mini ghost" data-mdel="' + i + '">✕</button></td>' +
+        '</tr>';
+    }).join('') || '<tr><td colspan="7" style="color:#8FA3BF">Aucun serveur enregistré. Ajoutez-en un pour voir son score de risque.</td></tr>';
+    ecrire(CLE_MCP, serveurs);
+  }
+
+  document.getElementById('m-add').addEventListener('click', function () {
+    var s = lireForm();
+    if (!s.nom) { alert('Donnez un nom au serveur MCP avant de l\'enregistrer.'); return; }
+    serveurs.push(s);
+    ['m-nom', 'm-outils', 'm-revue', 'm-resp'].forEach(function (id) { document.getElementById(id).value = ''; });
+    ['m-ecriture', 'm-suppression', 'm-perso', 'm-secrets'].forEach(function (id) { document.getElementById(id).checked = false; });
+    renderMCP();
+  });
+  document.getElementById('m-demo').addEventListener('click', function () {
+    serveurs = serveurs.concat([
+      { nom: 'Serveur Jira interne', editeur: 'interne', outils: 'lister tickets, créer ticket, commenter', auth: 'oauth', reseau: 'interne', zone: 'ue', revue: 'T1 2027', responsable: 'DSI', ecriture: true, suppression: false, donneesPerso: true, secrets: false, journalise: true, plafond: true },
+      { nom: 'Connecteur CRM communautaire', editeur: 'communautaire', outils: 'lire contacts, exporter base, supprimer doublon', auth: 'cle', reseau: 'public', zone: 'horsUE', revue: '', responsable: '', ecriture: true, suppression: true, donneesPerso: true, secrets: true, journalise: false, plafond: false }
+    ]);
+    renderMCP();
+  });
+  document.getElementById('m-lignes').addEventListener('click', function (e) {
+    var d = e.target.getAttribute && e.target.getAttribute('data-mdel');
+    if (d === null) return;
+    serveurs.splice(parseInt(d, 10), 1);
+    renderMCP();
+  });
+  document.getElementById('m-csv').addEventListener('click', function () {
+    var l = [['Serveur', 'Éditeur', 'Outils exposés', 'Modification', 'Suppression', 'Données perso', 'Secrets', 'Auth', 'Journalisé', 'Réseau', 'Zone', 'Plafond', 'Score', 'Niveau', 'Décision', 'Responsable', 'Revue']];
+    serveurs.forEach(function (s) {
+      var r = G.scoreRisqueMCP(s);
+      l.push([s.nom, s.editeur, s.outils, s.ecriture ? 'oui' : 'non', s.suppression ? 'oui' : 'non', s.donneesPerso ? 'oui' : 'non', s.secrets ? 'oui' : 'non',
+        s.auth, s.journalise ? 'oui' : 'non', s.reseau, s.zone, s.plafond ? 'oui' : 'non', r.score, r.niveau, r.decision, s.responsable || '', s.revue || '']);
+    });
+    telecharger('garde-fou-ia-registre-mcp.csv', G.versCSV(l), 'text/csv;charset=utf-8');
+  });
+  document.getElementById('m-md').addEventListener('click', function () {
+    var md = '# Registre des serveurs MCP — ' + new Date().toLocaleDateString('fr-FR') + '\n\n' + G.versMarkdownRegistre(serveurs) +
+      '\n\n*Revue trimestrielle obligatoire. Tout serveur en niveau « élevé » doit être refusé ou isolé (lecture seule + validation humaine).*\n';
+    telecharger('garde-fou-ia-registre-mcp.md', md, 'text/markdown;charset=utf-8');
+  });
+
+  /* ---------- init ---------- */
+  document.getElementById('jours').value = opts.joursMois;
+  document.getElementById('taux').value = opts.taux;
+  document.getElementById('budget').value = opts.budgetMensuel;
+  agents.forEach(function (a) { appliquerModele(a); });
+  renderTable();
+  renderMCP();
+})();
+</script>
+</body>
+</html>
