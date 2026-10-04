@@ -9,3 +9,7 @@ secrets*
 *.xlsx
 leads*
 .DS_Store
+
+# Livrables payants — hors dépôt public (livraison par email)
+formation-garde-fou.pdf
+templates/*.md
