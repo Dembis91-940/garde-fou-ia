@@ -13,3 +13,5 @@ leads*
 # Livrables payants — hors dépôt public (livraison par email)
 formation-garde-fou.pdf
 templates/*.md
+gouvernance/*.md
+entreprise/*.md

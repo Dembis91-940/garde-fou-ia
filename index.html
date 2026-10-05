@@ -49,9 +49,10 @@
     { "@type": "Question", "name": "Faut-il être développeur pour utiliser le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Aucun prérequis technique : la formation s'adresse aux dirigeants, responsables d'exploitation, chefs de projet et développeurs. Les templates sont des fichiers .md prêts à remplir, pas du code." } },
     { "@type": "Question", "name": "Comment est livré le pack ?", "acceptedAnswer": { "@type": "Answer", "text": "Après votre commande, vous recevez un email sous 24 h ouvrées avec le lien de téléchargement : la formation en PDF et les templates en fichiers .md." } },
     { "@type": "Question", "name": "Y a-t-il une garantie ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : garantie satisfait ou remboursé 14 jours, sans condition." } },
-    { "@type": "Question", "name": "Quelle est la différence entre les trois offres ?", "acceptedAnswer": { "@type": "Answer", "text": "29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi. 119 € : tout + le module Gouvernance des agents (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Le module Gouvernance est aussi vendu seul à 39 €." } },
+    { "@type": "Question", "name": "Quelle est la différence entre les trois offres ?", "acceptedAnswer": { "@type": "Answer", "text": "29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi. 119 € : tout + le module Gouvernance des agents (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires) et le module Coupe-circuit (plafonds durs, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi — 3 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Les modules Gouvernance et Coupe-circuit sont aussi vendus seuls, à 39 € chacun." } },
     { "@type": "Question", "name": "Comment savoir ce que mes agents IA me coûtent ?", "acceptedAnswer": { "@type": "Answer", "text": "Un agent qui part en boucle continue de facturer des tokens. Le module Gouvernance fournit une grille de suivi des coûts par agent et par modèle (coût par appel, par mois, par an), un budget mensuel, un seuil d'alerte à 80 % et des règles de coupure, ainsi qu'un calculateur gratuit qui fonctionne entièrement dans votre navigateur, sans envoi de données." } },
-    { "@type": "Question", "name": "Le pack aide-t-il à respecter le RGPD ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : il vous aide à mettre en place le registre des agents, la matrice de risques et la procédure d'incident qui encadrent vos données personnelles, dans l'esprit des recommandations RGPD et CNIL." } }
+    { "@type": "Question", "name": "Le pack aide-t-il à respecter le RGPD ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui : il vous aide à mettre en place le registre des agents, la matrice de risques et la procédure d'incident qui encadrent vos données personnelles, dans l'esprit des recommandations RGPD et CNIL." } },
+    { "@type": "Question", "name": "Comment empêcher un agent de continuer à dépenser ?", "acceptedAnswer": { "@type": "Answer", "text": "On empêche la dérive par cinq verrous : un plafond dur (montant au-delà duquel toute action est refusée), un interrupteur qui coupe l'agent immédiatement, la révocation du moyen de paiement (carte bancaire, clé API, accès), une approbation humaine obligatoire au-delà d'un montant, et un registre des approbations qui conserve qui a approuvé quoi et quand. Tout est fourni dans le module Coupe-circuit, à 39 €, inclus dans le Pack Entreprise à 119 €." } }
   ]
 }
 </script>
@@ -468,6 +469,7 @@ a{transition:color .3s ease}
       <a href="#methode">Méthode</a>
       <a href="#offres">Offres</a>
       <a href="gouvernance-agents.html">Gouvernance</a>
+      <a href="coupe-circuit.html">Coupe-circuit</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="nav-cta" href="#commander">Sécuriser mes agents</a>
@@ -478,6 +480,7 @@ a{transition:color .3s ease}
     <a href="#methode">Méthode</a>
     <a href="#offres">Offres</a>
     <a href="gouvernance-agents.html">Module Gouvernance des agents</a>
+    <a href="coupe-circuit.html">Module Coupe-circuit</a>
     <a href="outil-gouvernance.html">Outil coûts &amp; registre MCP</a>
     <a href="#faq">FAQ</a>
     <a href="#commander" style="color:var(--red);font-weight:600">Sécuriser mes agents</a>
@@ -709,6 +712,59 @@ a{transition:color .3s ease}
   </div>
 </section>
 
+<!-- ============ MODULE COUPE-CIRCUIT ============ -->
+<section class="pains" id="module-coupe-circuit">
+  <div class="container">
+    <div class="sect-head reveal">
+      <span class="kicker">SYS.03c — Module Coupe-circuit</span>
+      <h2>Un agent ne doit jamais pouvoir dépenser sans limite.</h2>
+      <p class="lead">Plafonds durs, interruption immédiate, révocation des moyens de paiement et validation humaine : le module Coupe-circuit pose les règles qui arrêtent un agent avant qu'il ne coûte trop cher.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain reveal">
+        <span class="badge">Verrou 01</span>
+        <h3>Plafonds durs et coupe-circuit</h3>
+        <p>Un seuil par agent, par jour et par action : au-delà, l'agent est arrêté, pas seulement alerté. Le plafond dur et l'interrupteur coupent la dérive pendant qu'elle a lieu.</p>
+        <div class="faille"><span>Livrable</span><b>Règles de coupure + seuils d'alerte</b></div>
+      </div>
+      <div class="pain reveal d1">
+        <span class="badge">Verrou 02</span>
+        <h3>Révocation des moyens de paiement</h3>
+        <p>Carte bancaire, clé API, accès aux outils payants : chaque moyen de paiement doit pouvoir être coupé en quelques minutes, avec la procédure et les responsables nommés.</p>
+        <div class="faille"><span>Livrable</span><b>Procédure de révocation immédiate</b></div>
+      </div>
+      <div class="pain reveal d2">
+        <span class="badge">Verrou 03</span>
+        <h3>Approbation humaine et registre</h3>
+        <p>Au-dessus d'un montant, aucune action ne part sans validation. Le registre « qui approuve quoi » conserve l'auteur, la date et la décision, pour la revue et l'audit.</p>
+        <div class="faille"><span>Livrable</span><b>Registre des approbations + seuils par montant</b></div>
+      </div>
+    </div>
+    <div class="formation-box reveal" style="margin-top:34px">
+      <div>
+        <h3>Le module Coupe-circuit en une ligne</h3>
+        <ul>
+          <li><b>3 templates</b> : plafonds durs et coupe-circuit, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi</li>
+          <li><b>Règles prêtes à l'emploi</b> : seuils par agent et par montant, procédure d'arrêt d'urgence, matrice d'autonomie et règle des 4 yeux</li>
+          <li>100 % local : vos seuils et vos montants restent chez vous, aucun compte</li>
+          <li><b>39 €</b> seul — ou <b>inclus dans le Pack Entreprise à 119 €</b></li>
+        </ul>
+      </div>
+      <div class="fmeta">
+        <b>Format</b>&nbsp;3 documents .md<br>
+        <b>Usage</b>&nbsp;1 mise en place, puis 1 revue mensuelle des approbations<br>
+        <b>Cible</b>&nbsp;direction, finance, exploitation, DSI<br>
+        <b>Prérequis</b>&nbsp;aucun<br>
+        <b>Bonus</b>&nbsp;complète le module Gouvernance (coûts et plafonds)
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px">
+      <a class="btn btn-red" href="coupe-circuit.html">Voir le module Coupe-circuit →</a>
+      <a class="btn btn-outil" href="outil-gouvernance.html">🛡 Calculer mes coûts d'agents (gratuit)</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ OFFRES ============ -->
 <section class="offres" id="offres">
   <div class="container">
@@ -750,7 +806,8 @@ a{transition:color .3s ease}
         <div class="p-note">Pour les équipes et les enjeux multiples</div>
         <ul>
           <li>Tout de l'offre Templates (59 €)</li>
-          <li><b>Module Gouvernance des agents</b> : coûts des agents et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — <b>8 templates</b> en plus</li>
+          <li><b>Module Gouvernance des agents</b> : coûts des agents et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — <b>8 templates</b></li>
+          <li><b>Module Coupe-circuit</b> : plafonds durs et coupe-circuit, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi — <b>3 templates</b></li>
           <li>Procédure d'incident version entreprise : rôles RACI, escalade, communication, obligations CNIL</li>
           <li>Kit de sensibilisation équipe : email d'annonce, atelier de 45 minutes, quiz de 10 questions</li>
           <li>Mises à jour pendant 12 mois</li>
@@ -824,7 +881,11 @@ a{transition:color .3s ease}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Quelle est la différence entre les trois offres ?<span class="fx">+</span></button>
-        <div class="faq-a">29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi (politique d'usage et registre, 3 prompts sécurisés, 2 checklists, procédure et fiche d'incident, matrice de risques). 119 € : tout + le <b>module Gouvernance des agents</b> (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Le module Gouvernance existe aussi seul, à 39 €.</div>
+        <div class="faq-a">29 € : la formation seule. 59 € : la formation + 10 templates prêts à l'emploi (politique d'usage et registre, 3 prompts sécurisés, 2 checklists, procédure et fiche d'incident, matrice de risques). 119 € : tout + le <b>module Gouvernance des agents</b> (coûts et plafonds de coupure, gouvernance des serveurs MCP, revue des skills — 8 templates supplémentaires) et le <b>module Coupe-circuit</b> (plafonds durs, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi — 3 templates supplémentaires), la procédure d'incident version entreprise et le kit de sensibilisation équipe (email d'annonce, atelier de 45 minutes, quiz). Les modules Gouvernance et Coupe-circuit existent aussi seuls, à 39 € chacun.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Comment empêcher un agent de continuer à dépenser ?<span class="fx">+</span></button>
+        <div class="faq-a">On empêche la dérive par cinq verrous : un <b>plafond dur</b> (montant au-delà duquel toute action est refusée), un <b>interrupteur</b> qui coupe l'agent immédiatement, la <b>révocation du moyen de paiement</b> (carte bancaire, clé API, accès aux outils payants), une <b>approbation humaine</b> obligatoire au-delà d'un montant, et un <b>registre des approbations</b> qui conserve qui a approuvé quoi et quand. Tout est fourni dans le <b>module Coupe-circuit</b>, à 39 €, inclus dans le Pack Entreprise à 119 €.</div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q">Comment est livré le pack ?<span class="fx">+</span></button>
@@ -871,6 +932,7 @@ a{transition:color .3s ease}
         <h4>Le pack</h4>
         <a href="#reflexes">Les 7 réflexes</a>
         <a href="gouvernance-agents.html">Module Gouvernance des agents</a>
+        <a href="coupe-circuit.html">Module Coupe-circuit</a>
         <a href="outil-gouvernance.html">Outil coûts &amp; registre MCP</a>
         <a href="outil.html">Audit sécurité /100</a>
         <a href="#commander">Commander</a>

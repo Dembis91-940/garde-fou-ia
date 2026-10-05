@@ -3,7 +3,7 @@
 'use strict';
 const fs = require('fs'), path = require('path');
 const RACINE = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'gouvernance-agents.html', 'outil-gouvernance.html', 'outil.html'];
+const PAGES = ['index.html', 'coupe-circuit.html', 'gouvernance-agents.html', 'outil-gouvernance.html', 'outil.html'];
 let ko = 0;
 PAGES.forEach(function (p) {
   const html = fs.readFileSync(path.join(RACINE, p), 'utf8');

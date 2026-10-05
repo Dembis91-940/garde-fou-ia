@@ -2,7 +2,7 @@
 
 **Promesse** : « Déployez vos agents IA avec les mêmes réflexes que vos serveurs. »
 
-Pack prêt à vendre pour solopreneur : landing + formation PDF + templates de sécurité + procédure d'incident + sensibilisation équipe + **module Gouvernance des agents** (coûts, serveurs MCP, revue des skills).
+Pack prêt à vendre pour solopreneur : landing + formation PDF + templates de sécurité + procédure d'incident + sensibilisation équipe + **module Gouvernance des agents** (coûts, serveurs MCP, revue des skills) + **module Coupe-circuit** (plafonds durs, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi).
 
 ## Offres
 
@@ -10,18 +10,20 @@ Pack prêt à vendre pour solopreneur : landing + formation PDF + templates de s
 |---|---|---|
 | Formation | 29 € | Formation PDF « Les 7 réflexes de sécurité » (~20 pages), exemples réels, checklist de déploiement 10 points, glossaire, mises à jour 12 mois |
 | Module Gouvernance | 39 € | Les 8 templates de gouvernance (`gouvernance/`, 3 documents .md) : coûts des agents + plafonds de coupure, gouvernance des serveurs MCP, revue des skills. Outil de calcul accessible librement |
+| Module Coupe-circuit | 39 € | Les 3 templates coupe-circuit (`gouvernance/04-coupe-circuit-agents.md`) : plafonds durs et coupe-circuit, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi. 39 € seul, **inclus dans le Pack Entreprise 119 €** |
 | Formation + Templates | 59 € — **LE PLUS CHOISI** | Tout l'offre 29 € + **10 templates** (5 documents .md) : politique d'usage + registre des agents, 3 prompts sécurisés, 2 check-lists, procédure d'incident + fiche d'incident, matrice de risques |
-| Pack Entreprise | 119 € | Tout l'offre 59 € + **module Gouvernance (8 templates)** + procédure d'incident version entreprise (rôles RACI, cellule de crise, escalade, communication, obligations CNIL) + kit de sensibilisation équipe (email d'annonce, atelier 45 min, quiz 10 questions) |
+| Pack Entreprise | 119 € | Tout l'offre 59 € + **module Gouvernance (8 templates)** + **module Coupe-circuit (3 templates)** + procédure d'incident version entreprise (rôles RACI, cellule de crise, escalade, communication, obligations CNIL) + kit de sensibilisation équipe (email d'annonce, atelier 45 min, quiz 10 questions) |
 | Audit gouvernance | 490 – 990 € | Prestation sur mesure : relevé réel des agents/volumes/factures, inventaire des serveurs MCP et permissions, registre + budget + règles de coupure configurés, restitution écrite et visio |
 
-> Total templates : **10** (offre 59 €) + **8** (module Gouvernance) = **18 templates en 8 documents**.
+> Total templates : **10** (offre 59 €) + **8** (module Gouvernance) + **3** (module Coupe-circuit) = **21 templates en 9 documents**.
 
 ## Structure du dossier
 
 ```
 garde-fou-ia/
-├── index.html                      # Landing (acier/rouge) : hero, douleurs, méthode, 7 réflexes, module Gouvernance, offres, commande Stripe, FAQ, footer
+├── index.html                      # Landing (acier/rouge) : hero, douleurs, méthode, 7 réflexes, module Gouvernance, module Coupe-circuit, offres, commande Stripe, FAQ, footer
 ├── gouvernance-agents.html         # Page du module Gouvernance : 39 € / inclus 119 € / audit 490–990 €, formulaire EmailJS, FAQ, JSON-LD
+├── coupe-circuit.html              # Page du module Coupe-circuit : plafonds durs, révocation des moyens de paiement, approbation humaine et registre qui-approuve-quoi — 39 € / inclus 119 €, FAQ, JSON-LD
 ├── outil-gouvernance.html          # OUTIL GRATUIT : calculateur de coûts d'agents + registre MCP (100 % local, export CSV/Markdown, impression)
 ├── gouvernance-calc.js             # Moteur de calcul pur (coûts, plafonds, score de risque MCP, exports) — testé par tests/qa-gouvernance.js
 ├── formation-garde-fou.md          # LA FORMATION (~20 pages) : 7 modules, fil rouge Nadia & Chloé, exemples réels, checklist, glossaire
@@ -31,15 +33,16 @@ garde-fou-ia/
 │   ├── checklist-avant-deploiement.md  # T6 check-list avant déploiement + T7 check-list de revue mensuelle
 │   ├── procedure-incident.md       # T8 procédure d'incident + T9 fiche d'incident
 │   └── matrice-risques.md          # T10 matrice de risques + échelles + scénarios types
-├── gouvernance/                    # 3 documents = 8 templates (module 39 € / inclus 119 €)
+├── gouvernance/                    # 4 documents = 8 templates (module Gouvernance 39 €) + 3 templates (module Coupe-circuit 39 €), inclus dans le Pack Entreprise 119 €
 │   ├── 01-suivi-couts-agents.md    # T11 grille de suivi des coûts + T12 règles de coupure et revue
 │   ├── 02-gouvernance-mcp.md       # T13 checklist 12 points + T14 registre MCP + T15 politique des outils autorisés
-│   └── 03-revue-skills-agents.md   # T16 inventaire des skills + T17 grille de revue trimestrielle + T18 règles du harnais
+│   ├── 03-revue-skills-agents.md   # T16 inventaire des skills + T17 grille de revue trimestrielle + T18 règles du harnais
+│   └── 04-coupe-circuit-agents.md  # T19 plafonds durs et coupe-circuit + T20 révocation des moyens de paiement + T21 approbation humaine et registre qui-approuve-quoi
 ├── entreprise/                     # Suppléments offre 119 €
 │   ├── procedure-incident-entreprise.md  # RACI, cellule de crise, escalade, communication, CNIL 72 h
 │   └── kit-sensibilisation-equipe.md     # Email d'annonce, atelier 45 min, quiz 10 questions corrigé
 ├── tests/qa-gouvernance.js         # Harness Node (zéro dépendance) : moteur, doc↔moteur, liens, honnêteté
-├── chatbot-config.js               # Widget chatbot FAQ + leads (accent #ef4444), 13 FAQ dont coûts / MCP / skills
+├── chatbot-config.js               # Widget chatbot FAQ + leads (accent #ef4444), 14 FAQ dont coûts / MCP / skills / coupe-circuit / approbation
 ├── chatbot.js                      # Widget chatbot (pattern ai-course-builder)
 ├── og-image.svg                    # Image de partage réseaux (1200 × 630)
 └── README.md
@@ -50,7 +53,7 @@ garde-fou-ia/
 - **Landing + module** : statique, HTML/CSS/JS pur, design « sécurité industrielle » — gris acier + rouge signal `#FF3B30` + fond `#0A0C12`, bandes de danger, panneaux de contrôle.
 - **Commande** : la landing passe par **Stripe Payment Links** (29 / 59 / 119 €, `STRIPE_LINKS` en bas de `index.html`). La page du module utilise le **formulaire EmailJS réel** — `serviceId=service_cy1ytdb`, `templateId=template_xpo58cv`, `publicKey=8Pui4ZEqxW2jRVF7h`, payload `{site, name, email, question}` (site = « Garde-fou IA — Module Gouvernance », question = « Commande : <offre> — <contexte> »). **Aucun lien Stripe 39 € pour l'instant** : le module se règle par lien de paiement envoyé sous 24 h ouvrées (créer le Payment Link puis remplacer le CTA quand la clé Stripe est disponible).
 - **Outil de calcul** : `outil-gouvernance.html` + `gouvernance-calc.js`, **aucune dépendance, aucune requête réseau**, données conservées en `localStorage` (clés `gf_gouv_*`), exports CSV (BOM + `;` pour Excel FR) et Markdown. Les prix des modèles sont des **ordres de grandeur éditables** — l'outil affiche explicitement qu'ils doivent être ajustés sur la page tarifaire du fournisseur.
-- **Chatbot** : widget autonome FAQ + capture de leads, accent `#ef4444`, 13 FAQ business (prix exacts 29 / 39 / 59 / 119 €, différence des offres, coûts des agents, serveurs MCP, skills, livraison 24 h ouvrées, prérequis, garantie 14 jours, RGPD, incidents, paiement). Chute en capture de leads EmailJS si question hors FAQ.
+- **Chatbot** : widget autonome FAQ + capture de leads, accent `#ef4444`, 14 FAQ business (prix exacts 29 / 39 / 59 / 119 €, différence des offres, coûts des agents, serveurs MCP, skills, **coupe-circuit et plafonds**, **approbation humaine et registre**, livraison 24 h ouvrées, prérequis, garantie 14 jours, RGPD, incidents, paiement). Chute en capture de leads EmailJS si question hors FAQ.
 - **SEO** : JSON-LD Product + FAQPage sur la landing et sur la page module, Open Graph (og:image = og-image.svg), meta description, favicon SVG.
 - **Animations** : reveal au scroll (IntersectionObserver, respecte `prefers-reduced-motion`), accordéon FAQ, burger mobile.
 
@@ -60,13 +63,13 @@ garde-fou-ia/
 2. Réponse sous 24 h ouvrées avec le lien de téléchargement (Google Drive / WeTransfer) : formation en **PDF** (convertir `formation-garde-fou.md` — script `~/Documents/scripts/md2pdf.py`) + templates en `.md`.
 3. Facture sur demande.
 4. Mises à jour pendant 12 mois : renvoyer les fichiers mis à jour aux acheteurs (liste à tenir dans un tableur).
-5. Acheteurs du Pack Entreprise antérieurs au module : **renvoyer gratuitement** les 3 documents de `gouvernance/` (c'est une mise à jour du pack).
+5. Acheteurs du Pack Entreprise antérieurs au module : **renvoyer gratuitement** les documents de `gouvernance/` (module Gouvernance et module Coupe-circuit — c'est une mise à jour du pack).
 
 ## Cohérence chiffrée (à ne pas casser)
 
-- Prix : 29 / 39 / 59 / 119 € — mêmes montants partout (landing, page module, FAQ, chatbot, JSON-LD, README). Audit : 490 – 990 €.
+- Prix : 29 / 39 / 59 / 119 € — mêmes montants partout (landing, pages modules, FAQ, chatbot, JSON-LD, README). Les modules Gouvernance et Coupe-circuit sont à 39 € chacun, inclus dans le Pack Entreprise 119 €. Audit : 490 – 990 €.
 - « 10 templates en 5 documents » = `templates/` (offre 59 €) — **ne pas ajouter de fichier dans `templates/`** sans mettre à jour l'énumération de l'offre 59 €.
-- « 8 templates en 3 documents » = `gouvernance/` (module 39 € et Pack Entreprise). Total annoncé : **18 templates en 8 documents**.
+- « 8 templates en 3 documents » = `gouvernance/` (module Gouvernance 39 €) ; « 3 templates en 1 document » = `gouvernance/04-coupe-circuit-agents.md` (module Coupe-circuit 39 €). Le Pack Entreprise 119 € inclut **les deux modules**. Total annoncé : **21 templates en 9 documents**.
 - 7 réflexes = 7 modules de la formation = 7 cartes de la section réflexes de la landing.
 - Checklist de déploiement : 10 points — identiques dans la landing, la formation et le template T6.
 - Checklist MCP : **12 points** (T13) — identique dans le document 02 et la page du module.
